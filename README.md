@@ -5,6 +5,8 @@ Work in progress chess engine developed in Java. Main focus is the engine itself
 
 In the first version I copied the board and piece objects for each generated move, which turned out to be rather slow. In this version there is a method to create a move and a method to take back a move, so the same board and piece list can be used.
 
+Since the engine currently doesn't use an opening book, the opening moves of the engine can be confusing.
+
 
 Currently implementing special moves/rules, after that it is time to refactor the code.
 - en passant ✔️
