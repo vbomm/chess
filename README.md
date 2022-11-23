@@ -44,3 +44,4 @@ improve speed<br>
 - every time a pawn gets promoted, a new queen object is created. This slows down the move generation. Maybe check for already created and deactivated queen object in piece list?
 
 user interface (low priority, since main interest is developing the chess engine)<br>
+- add error message when images could not be found
