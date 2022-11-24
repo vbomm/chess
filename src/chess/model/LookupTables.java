@@ -38,32 +38,28 @@ public class LookupTables {
     }
 
     private void initBishop() {
-        bishop = new int[64][9];
+        bishop = new int[64][5];
 
         for (int i = 0; i < 64; i++) {
-            for (int m = 0; m < 8; m++) {
+            for (int m = 0; m < 5; m++) {
                 bishop[i][m] = -1;
             }
 
             int column = board.getColumn(i);
             int row = board.getRow(i);
 
-            if (row < 7) bishop[i][0] = i + 8;
-            if (column < 7 && row < 7) bishop[i][1] = i + 9;
-            if (column < 7) bishop[i][2] = i + 1;
-            if (column < 7 && row > 0) bishop[i][3] = i - 7;
-            if (row > 0) bishop[i][4] = i - 8;
-            if (column > 0 && row > 0) bishop[i][5] = i - 9;
-            if (column > 0) bishop[i][6] = i - 1;
-            if (column > 0 && row < 7) bishop[i][7] = i + 7;
+            if (column < 7 && row < 7) bishop[i][0] = i + 9;
+            if (column < 7 && row > 0) bishop[i][1] = i - 7;
+            if (column > 0 && row > 0) bishop[i][2] = i - 9;
+            if (column > 0 && row < 7) bishop[i][3] = i + 7;
         }
     }
 
     private void initRook() {
-        rook = new int[64][9];
+        rook = new int[64][5];
 
         for (int i = 0; i < 64; i++) {
-            for (int m = 0; m < 8; m++) {
+            for (int m = 0; m < 5; m++) {
                 rook[i][m] = -1;
             }
 
@@ -71,13 +67,9 @@ public class LookupTables {
             int row = board.getRow(i);
 
             if (row < 7) rook[i][0] = i + 8;
-            if (column < 7 && row < 7) rook[i][1] = i + 9;
-            if (column < 7) rook[i][2] = i + 1;
-            if (column < 7 && row > 0) rook[i][3] = i - 7;
-            if (row > 0) rook[i][4] = i - 8;
-            if (column > 0 && row > 0) rook[i][5] = i - 9;
-            if (column > 0) rook[i][6] = i - 1;
-            if (column > 0 && row < 7) rook[i][7] = i + 7;
+            if (column < 7) rook[i][1] = i + 1;
+            if (row > 0) rook[i][2] = i - 8;
+            if (column > 0) rook[i][3] = i - 1;
         }
     }
 
@@ -85,7 +77,7 @@ public class LookupTables {
         queen = new int[64][9];
 
         for (int i = 0; i < 64; i++) {
-            for (int m = 0; m < 8; m++) {
+            for (int m = 0; m < 9; m++) {
                 queen[i][m] = -1;
             }
 

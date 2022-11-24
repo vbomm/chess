@@ -19,9 +19,9 @@ public class Rook extends Piece {
             return;
 
         generateCaptures(0, captures);
+        generateCaptures(1, captures);
         generateCaptures(2, captures);
-        generateCaptures(4, captures);
-        generateCaptures(6, captures);
+        generateCaptures(3, captures);
     }
 
     private void generateCaptures(int dir, boolean[] captures) {
@@ -44,9 +44,9 @@ public class Rook extends Piece {
             return;
 
         generateMovesAndCaptures(0, moves, captures);
+        generateMovesAndCaptures(1, moves, captures);
         generateMovesAndCaptures(2, moves, captures);
-        generateMovesAndCaptures(4, moves, captures);
-        generateMovesAndCaptures(6, moves, captures);
+        generateMovesAndCaptures(3, moves, captures);
     }
 
     private void generateMovesAndCaptures(int direction, ArrayList<Move> moves, ArrayList<Move> captures) {

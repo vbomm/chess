@@ -18,10 +18,10 @@ public class Bishop extends Piece {
         if (!isActive())
             return;
 
+        generateCaptures(0, captures);
         generateCaptures(1, captures);
+        generateCaptures(2, captures);
         generateCaptures(3, captures);
-        generateCaptures(5, captures);
-        generateCaptures(7, captures);
     }
 
     private void generateCaptures(int direction, boolean[] captures) {
@@ -43,10 +43,10 @@ public class Bishop extends Piece {
         if (!isActive())
             return;
 
+        generateMovesAndCaptures(0, moves, captures);
         generateMovesAndCaptures(1, moves, captures);
+        generateMovesAndCaptures(2, moves, captures);
         generateMovesAndCaptures(3, moves, captures);
-        generateMovesAndCaptures(5, moves, captures);
-        generateMovesAndCaptures(7, moves, captures);
     }
 
     private void generateMovesAndCaptures(int direction, ArrayList<Move> moves, ArrayList<Move> captures) {
