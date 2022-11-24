@@ -254,17 +254,12 @@ public class Board {
             tile[move.getDestination()] = move.getTarget();
 
 
-        if (move.getTarget() != null) {
             move.getTarget().activate();
-            //tile[move.getDestination()].setTile(move.getDestination());
-        }
 
         move.getPiece().decreaseMoveCounter();
         moveHistory.remove(move);
 
-        //color[move.getDestination()] = whosTurn;
         changeWhosTurn();
-        //olor[move.getStart()] = whosTurn;
     }
 
     public void printBoard() {
