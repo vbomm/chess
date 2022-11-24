@@ -28,7 +28,7 @@ find and fix bugs<br>
 
 refactor code<br>
 - extract move generation logic from board class
-- extract lookup table generation from piece classes, so a lookup table is generated only one time for each piece and not every time a piece is created
+- extract lookup table generation from piece classes, so a lookup table is generated only one time for each piece and not every time a piece is created ✔
 
 
 improve evaluation of chess positions and quality of produced moves

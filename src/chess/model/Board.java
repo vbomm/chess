@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class Board {
     private Model model;
+    private LookupTables lookupTables;
     private Piece[] tile;
     private ArrayList<ArrayList<Piece>> pieces;
     private boolean whiteCanLongCastle;
@@ -22,6 +23,8 @@ public class Board {
 
     public Board(Model model) {
         this.model = model;
+        lookupTables = new LookupTables(this);
+
         tile = new Piece[64];
         kings = new King[2];
 
@@ -308,6 +311,10 @@ public class Board {
 
     public Piece getKing(ChessColor color) {
         return kings[colorHash.get(color)];
+    }
+
+    public LookupTables getLookupTables() {
+        return lookupTables;
     }
 
     //public void addMove(int start, int destination) {}

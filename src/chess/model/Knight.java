@@ -10,7 +10,7 @@ public class Knight extends Piece {
 
     public Knight(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.KNIGHT, tile);
-        generateMovesLookupTable();
+        lookupTable = getBoard().getLookupTables().getKnight();
     }
 
     @Override
@@ -47,27 +47,6 @@ public class Knight extends Piece {
                 captures.add(new Move(getTile(), tile, this, getBoard().getTile(tile), getBoard().getNoPawnMoveOrCaptureCounter()));
 
             tile = lookupTable[getTile()][m++];
-        }
-    }
-
-    public void generateMovesLookupTable() {
-        lookupTable = new int[64][9];
-
-        for (int i = 0; i < 64; i++) {
-            int m = 0;
-            int column = getBoard().getColumn(i);
-            int row = getBoard().getRow(i);
-
-            if (row < 6 && column < 7) lookupTable[i][m++] = i + 17;
-            if (row < 7 && column < 6) lookupTable[i][m++] = i + 10;
-            if (row < 6 && column > 0) lookupTable[i][m++] = i + 15;
-            if (row < 7 && column > 1) lookupTable[i][m++] = i + 6;
-            if (row > 1 && column < 7) lookupTable[i][m++] = i - 15;
-            if (row > 0 && column < 6) lookupTable[i][m++] = i - 6;
-            if (row > 1 && column > 0) lookupTable[i][m++] = i - 17;
-            if (row > 0 && column > 1) lookupTable[i][m++] = i - 10;
-
-            lookupTable[i][m] = -1;
         }
     }
 }
