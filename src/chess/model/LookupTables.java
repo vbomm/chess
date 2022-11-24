@@ -41,9 +41,8 @@ public class LookupTables {
         bishop = new int[64][5];
 
         for (int i = 0; i < 64; i++) {
-            for (int m = 0; m < 5; m++) {
+            for (int m = 0; m < 5; m++)
                 bishop[i][m] = -1;
-            }
 
             int column = board.getColumn(i);
             int row = board.getRow(i);
@@ -59,9 +58,8 @@ public class LookupTables {
         rook = new int[64][5];
 
         for (int i = 0; i < 64; i++) {
-            for (int m = 0; m < 5; m++) {
+            for (int m = 0; m < 5; m++)
                 rook[i][m] = -1;
-            }
 
             int column = board.getColumn(i);
             int row = board.getRow(i);
@@ -77,9 +75,8 @@ public class LookupTables {
         queen = new int[64][9];
 
         for (int i = 0; i < 64; i++) {
-            for (int m = 0; m < 9; m++) {
+            for (int m = 0; m < 9; m++)
                 queen[i][m] = -1;
-            }
 
             int column = board.getColumn(i);
             int row = board.getRow(i);
