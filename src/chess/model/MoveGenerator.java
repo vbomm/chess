@@ -132,13 +132,6 @@ public class MoveGenerator {
         for (int i = 0; i < board.getPieceList().get(colorHash.get(board.getWhosTurn())).size(); i++)
             board.getPieceList().get(colorHash.get(board.getWhosTurn())).get(i).generateMovesAndCaptures(moves, captures);
 
-        /*
-        for (int i = 0; i < 64; i++)
-            if (!board.isTileEmpty(i))
-                if (board.getWhosTurn() == board.getColor(i))
-                    board.getTile(i).generateMovesAndCaptures(moves, captures);
-        */
-
         findCastling(moves);
     }
 
@@ -156,13 +149,6 @@ public class MoveGenerator {
 
         for (int i = 0; i < board.getPieceList().get(color).size(); i++)
             board.getPieceList().get(color).get(i).generateThreats(threats);
-
-        /*
-        for (int i = 0; i < 64; i++)
-            if (!board.isTileEmpty(i))
-                if (board.getWhosTurn() != board.getColor(i))
-                    board.getTile(i).generateThreads(threats);
-        */
     }
 
     public boolean[] getLastGeneratedThreats() {
@@ -185,30 +171,6 @@ public class MoveGenerator {
         //short castling
         if (shortCastleRookStart(color) && shortCastleEmptyTiles(color))
             moves.add(new Move(castleKingStart[color], shortCastleKingDestination[color], board.getTile(castleKingStart[color]), null, board.getNoPawnMoveOrCaptureCounter()));
-
-        // long castle
-        //if (board.getTile(longCastleRookStart[color]) != null && board.getTile(longCastleRookStart[color]).neverMoved()
-                //&& board.getTile(castleKingStart[color]) != null && board.getTile(castleKingStart[color]).neverMoved()
-                //&& !threats[castleKingStart[color]]
-                //&& !threats[longCastleEmptyTiles[color][0]] && !threats[longCastleEmptyTiles[color][1]] && !threats[longCastleEmptyTiles[color][2]])
-            //if (board.isTileEmpty(longCastleEmptyTiles[color][0]) && board.isTileEmpty(longCastleEmptyTiles[color][1]) && board.isTileEmpty(longCastleEmptyTiles[color][2])
-                    //&& board.getTile(longCastleRookStart[color]).getType() == PieceType.ROOK && board.getColor(longCastleRookStart[color]) == board.getWhosTurn()
-                    //&& board.getTile(castleKingStart[color]).getType() == PieceType.KING && board.getColor(castleKingStart[color]) == board.getWhosTurn()) {
-                //moves.add(new Move(castleKingStart[color], longCastleKingDestination[color], board.getTile(castleKingStart[color]), 0, null));
-           //}
-
-        // short castle
-        /*
-        if (board.getTile(shortCastleRookStart[color]) != null && board.getTile(shortCastleRookStart[color]).neverMoved()
-                && board.getTile(castleKingStart[color]) != null && board.getTile(castleKingStart[color]).neverMoved()
-                && !threats[castleKingStart[color]]
-                && !threats[shortCastleEmptyTiles[color][0]] && !threats[shortCastleEmptyTiles[color][1]])
-            if (board.isTileEmpty(shortCastleEmptyTiles[color][0]) && board.isTileEmpty(shortCastleEmptyTiles[color][1])
-                    && board.getTile(shortCastleRookStart[color]).getType() == PieceType.ROOK && board.getColor(shortCastleRookStart[color]) == board.getWhosTurn()
-                    && board.getTile(castleKingStart[color]).getType() == PieceType.KING && board.getColor(castleKingStart[color]) == board.getWhosTurn()) {
-                moves.add(new Move(castleKingStart[color], shortCastleKingDestination[color], board.getTile(castleKingStart[color]), 0, null));
-            }
-        */
     }
 
     private boolean castleKingStart(int color) {
