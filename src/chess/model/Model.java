@@ -47,15 +47,6 @@ private HashMap<ChessColor, Integer> colorHash;
             moveGenerator.findMovesAndCaptures();
             moveGenerator.removeInvalidMoves();
         }
-
-        /*moveGenerator.findMovesAndCaptures();
-        System.out.println(board.getWhosTurn());
-        for (int i = 0; i < 64; i++) {
-            if (i != 0 && i % 8 == 0)
-                System.out.println();
-            System.out.print(moveGenerator.getLastGeneratedThreats()[i] ? 1 : 0);
-        }
-        System.out.println();*/
     }
 
     public boolean hasPieceAccessToTile(int startX, int startY, int destinationX, int destinationY) {
@@ -132,14 +123,6 @@ private HashMap<ChessColor, Integer> colorHash;
 
         for (int i = 0; i < 64; i++)
                 tileNameHash.put(tileNames[i], i);
-
-        /*int c = 0;
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
-                System.out.print(tileNames[c++] + " ");
-            }
-            System.out.println();
-        }*/
     }
 
     public int tileNameToIndex(String tileName) {
