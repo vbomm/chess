@@ -253,7 +253,7 @@ public class Board {
         } else
             tile[move.getDestination()] = move.getTarget();
 
-
+        if (move.getTarget() != null)
             move.getTarget().activate();
 
         move.getPiece().decreaseMoveCounter();
