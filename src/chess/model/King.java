@@ -8,9 +8,16 @@ import java.util.ArrayList;
 public class King extends Piece {
     private int[][] lookupTable;
 
+    /**
+     * Initializes a new King and gets the corresponding lookup table for moves.
+     *
+     * @param board the Board object
+     * @param color the color of this Object
+     * @param tile the tile of this Object
+     */
     public King(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.KING, tile);
-        generateMovesLookupTable();
+        lookupTable = getBoard().getLookupTables().getKing();
     }
 
     @Override
@@ -45,27 +52,6 @@ public class King extends Piece {
                 captures.add(new Move(getTile(), tile, this, getBoard().getTile(tile), getBoard().getNoPawnMoveOrCaptureCounter()));
 
             tile = lookupTable[getTile()][m++];
-        }
-    }
-
-    public void generateMovesLookupTable() {
-        lookupTable = new int[64][9];
-
-        for (int i = 0; i < 64; i++) {
-            int m = 0;
-            int column = getBoard().getColumn(i);
-            int row = getBoard().getRow(i);
-
-            if(column > 0) lookupTable[i][m++] = i - 1;
-            if(column < 7) lookupTable[i][m++] = i + 1;
-            if(row > 0) lookupTable[i][m++] = i - 8;
-            if(row < 7) lookupTable[i][m++] = i + 8;
-            if(column < 7 && row < 7) lookupTable[i][m++] = i + 9;
-            if(column > 0 && row < 7) lookupTable[i][m++] = i + 7;
-            if(column > 0 && row > 0) lookupTable[i][m++]= i - 9;
-            if(column < 7 && row > 0) lookupTable[i][m++]= i - 7;
-
-            lookupTable[i][m] = -1;
         }
     }
 }

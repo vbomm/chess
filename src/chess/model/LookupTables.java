@@ -6,6 +6,7 @@ public class LookupTables {
     private int[][] bishop;
     private int[][] rook;
     private int[][] queen;
+    private int[][] king;
 
     public LookupTables(Board board) {
         this.board = board;
@@ -14,6 +15,7 @@ public class LookupTables {
         initBishop();
         initRook();
         initQueen();
+        initKing();
     }
 
     private void initKnight() {
@@ -92,6 +94,27 @@ public class LookupTables {
         }
     }
 
+    private void initKing() {
+        king = new int[64][9];
+
+        for (int i = 0; i < 64; i++) {
+            int m = 0;
+            int column = board.getColumn(i);
+            int row = board.getRow(i);
+
+            if(column > 0) king[i][m++] = i - 1;
+            if(column < 7) king[i][m++] = i + 1;
+            if(row > 0) king[i][m++] = i - 8;
+            if(row < 7) king[i][m++] = i + 8;
+            if(column < 7 && row < 7) king[i][m++] = i + 9;
+            if(column > 0 && row < 7) king[i][m++] = i + 7;
+            if(column > 0 && row > 0) king[i][m++]= i - 9;
+            if(column < 7 && row > 0) king[i][m++]= i - 7;
+
+            king[i][m] = -1;
+        }
+    }
+
     public int[][] getKnight() {
         return knight;
     }
@@ -106,5 +129,9 @@ public class LookupTables {
 
     public int[][] getQueen() {
         return queen;
+    }
+
+    public int[][] getKing() {
+        return king;
     }
 }
