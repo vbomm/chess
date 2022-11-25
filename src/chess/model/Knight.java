@@ -8,6 +8,13 @@ import java.util.ArrayList;
 public class Knight extends Piece {
     private int[][] lookupTable;
 
+    /**
+     * Initializes a new Knight and gets the corresponding lookup table for moves.
+     *
+     * @param board the Board object
+     * @param color the color of this Object
+     * @param tile the tile of this Object
+     */
     public Knight(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.KNIGHT, tile);
         lookupTable = getBoard().getLookupTables().getKnight();

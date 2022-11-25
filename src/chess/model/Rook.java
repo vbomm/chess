@@ -8,6 +8,13 @@ import java.util.ArrayList;
 public class Rook extends Piece {
     private int[][] lookupTable;
 
+    /**
+     * Initializes a new Rook and gets the corresponding lookup table for moves.
+     *
+     * @param board the Board object
+     * @param color the color of this Object
+     * @param tile the tile of this Object
+     */
     public Rook(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.ROOK, tile);
         lookupTable = getBoard().getLookupTables().getRook();

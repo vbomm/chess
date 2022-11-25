@@ -8,6 +8,13 @@ import java.util.ArrayList;
 public class Bishop extends Piece {
     private int[][] lookupTable;
 
+    /**
+     * Initializes a new Bishop and gets the corresponding lookup table for moves.
+     *
+     * @param board the Board object
+     * @param color the color of this Object
+     * @param tile the tile of this Object
+     */
     public Bishop(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.BISHOP, tile);
         lookupTable = getBoard().getLookupTables().getBishop();

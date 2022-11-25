@@ -12,6 +12,13 @@ public class Pawn extends Piece {
     private int captureRight;
 
 
+    /**
+     * Initializes a new Pawn and sets the value for moves depending on the color/direction.
+     *
+     * @param board the Board object
+     * @param color the color of this Object
+     * @param tile the tile of this Object
+     */
     public Pawn(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.PAWN, tile);
 

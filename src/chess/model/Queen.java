@@ -8,6 +8,13 @@ import java.util.ArrayList;
 public class Queen extends Piece {
     private int[][] lookupTable;
 
+    /**
+     * Initializes a new Queen and gets the corresponding lookup table for moves.
+     *
+     * @param board the Board object
+     * @param color the color of this Object
+     * @param tile the tile of this Object
+     */
     public Queen(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.QUEEN, tile);
         lookupTable = getBoard().getLookupTables().getQueen();
