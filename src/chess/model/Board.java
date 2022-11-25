@@ -311,7 +311,4 @@ public class Board {
     public LookupTables getLookupTables() {
         return lookupTables;
     }
-
-    //public void addMove(int start, int destination) {}
-    //public void addCapture(int start, int destination) {}
 }
