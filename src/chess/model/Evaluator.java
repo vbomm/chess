@@ -38,13 +38,6 @@ public class Evaluator {
                     else
                         blackScore += pieceValues.get(piece.getType()) + position_score[0][pieceHash.get(piece.getType())][piece.getTile()];
 
-        /*for (int i = 0; i < 64; i++)
-            if (!board.isTileEmpty(i))
-                if (board.getColor(i) == ChessColor.WHITE)
-                    whiteScore += pieceValues.get(board.getTile(i).getType());
-                else
-                    blackScore += pieceValues.get(board.getTile(i).getType());*/
-
         return whiteScore - blackScore;
     }
 
