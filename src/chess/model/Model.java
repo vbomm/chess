@@ -2,7 +2,6 @@ package chess.model;
 
 import chess.controller.ChessColor;
 import chess.controller.PieceType;
-import chess.controller.Type;
 
 import java.util.HashMap;
 
@@ -94,8 +93,8 @@ private HashMap<ChessColor, Integer> colorHash;
         advancement = new int[2][64];
 
         for (int i = 0; i < 64; i++) {
-            advancement[Type.white()][i] = (63 - i) / 8;
-            advancement[Type.black()][i] = i / 8;
+            advancement[0][i] = (63 - i) / 8;
+            advancement[1][i] = i / 8;
         }
     }
 

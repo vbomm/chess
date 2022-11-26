@@ -1,7 +1,6 @@
 package chess.view;
 
 import chess.controller.Controller;
-import chess.controller.Type;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +14,6 @@ public class View {
     private JPanel panel;
     private JPanel boardPanel;
     private JPanel aboveBoardPanel;
-    private Type type;
 
 
     public View(Controller controller) {

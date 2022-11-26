@@ -2,7 +2,6 @@ package chess.model;
 
 import chess.controller.ChessColor;
 import chess.controller.PieceType;
-import chess.controller.Type;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,34 +46,36 @@ public class MoveGenerator {
         longCastleKingDestination = new int[2];
         shortCastleKingDestination = new int[2];
 
-        castleKingStart[Type.white()] = board.tileNameToIndex("E1");
+        // white
+        castleKingStart[0] = board.tileNameToIndex("E1");
 
-        longCastleRookStart[Type.white()] = board.tileNameToIndex("A1");
-        longCastleRookDestination[Type.white()] = board.tileNameToIndex("D1");
-        longCastleEmptyTiles[Type.white()][0] = board.tileNameToIndex("B1");
-        longCastleEmptyTiles[Type.white()][1] = board.tileNameToIndex("C1");
-        longCastleEmptyTiles[Type.white()][2] = board.tileNameToIndex("D1");
-        longCastleKingDestination[Type.white()] = board.tileNameToIndex("C1");
+        longCastleRookStart[0] = board.tileNameToIndex("A1");
+        longCastleRookDestination[0] = board.tileNameToIndex("D1");
+        longCastleEmptyTiles[0][0] = board.tileNameToIndex("B1");
+        longCastleEmptyTiles[0][1] = board.tileNameToIndex("C1");
+        longCastleEmptyTiles[0][2] = board.tileNameToIndex("D1");
+        longCastleKingDestination[0] = board.tileNameToIndex("C1");
 
-        shortCastleKingDestination[Type.white()] = board.tileNameToIndex("G1");
-        shortCastleEmptyTiles[Type.white()][0] = board.tileNameToIndex("F1");
-        shortCastleEmptyTiles[Type.white()][1] = board.tileNameToIndex("G1");
-        shortCastleRookStart[Type.white()] = board.tileNameToIndex("H1");
-        shortCasteRookDestination[Type.white()] = board.tileNameToIndex("F1");
+        shortCastleKingDestination[0] = board.tileNameToIndex("G1");
+        shortCastleEmptyTiles[0][0] = board.tileNameToIndex("F1");
+        shortCastleEmptyTiles[0][1] = board.tileNameToIndex("G1");
+        shortCastleRookStart[0] = board.tileNameToIndex("H1");
+        shortCasteRookDestination[0] = board.tileNameToIndex("F1");
 
-        longCastleRookStart[Type.black()] = board.tileNameToIndex("A8");
-        longCastleRookDestination[Type.black()] = board.tileNameToIndex("D8");
-        longCastleEmptyTiles[Type.black()][0] = board.tileNameToIndex("B8");
-        longCastleEmptyTiles[Type.black()][1] = board.tileNameToIndex("C8");
-        longCastleEmptyTiles[Type.black()][2] = board.tileNameToIndex("D8");
-        castleKingStart[Type.black()] = board.tileNameToIndex("E8");
-        longCastleKingDestination[Type.black()] = board.tileNameToIndex("C8");
+        // black
+        longCastleRookStart[1] = board.tileNameToIndex("A8");
+        longCastleRookDestination[1] = board.tileNameToIndex("D8");
+        longCastleEmptyTiles[1][0] = board.tileNameToIndex("B8");
+        longCastleEmptyTiles[1][1] = board.tileNameToIndex("C8");
+        longCastleEmptyTiles[1][2] = board.tileNameToIndex("D8");
+        castleKingStart[1] = board.tileNameToIndex("E8");
+        longCastleKingDestination[1] = board.tileNameToIndex("C8");
 
-        shortCastleKingDestination[Type.black()] = board.tileNameToIndex("G8");
-        shortCastleEmptyTiles[Type.black()][0] = board.tileNameToIndex("F8");
-        shortCastleEmptyTiles[Type.black()][1] = board.tileNameToIndex("G8");
-        shortCastleRookStart[Type.black()] = board.tileNameToIndex("H8");
-        shortCasteRookDestination[Type.black()] = board.tileNameToIndex("F8");
+        shortCastleKingDestination[1] = board.tileNameToIndex("G8");
+        shortCastleEmptyTiles[1][0] = board.tileNameToIndex("F8");
+        shortCastleEmptyTiles[1][1] = board.tileNameToIndex("G8");
+        shortCastleRookStart[1] = board.tileNameToIndex("H8");
+        shortCasteRookDestination[1] = board.tileNameToIndex("F8");
     }
 
     private void initEnPassant() {
