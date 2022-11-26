@@ -129,7 +129,7 @@ public class View {
                 super.paintComponent(g);
 
                 if (controller.isAPieceSelected())
-                    g.drawImage(controller.getSelectedPieceImage(), controller.getSelectedPieceDragX(), controller.getSelectedPieceDragY(), this);
+                    g.drawImage(controller.getSelectedPieceIcon(), controller.getSelectedPieceDragX(), controller.getSelectedPieceDragY(), this);
             }
         };
 
@@ -151,7 +151,7 @@ public class View {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                controller.mouseReleased(e.getX() / labelsOverlay[0].getWidth(), e.getY() / labelsOverlay[0].getHeight());
+                controller.deselectPiece(e.getX() / labelsOverlay[0].getWidth(), e.getY() / labelsOverlay[0].getHeight());
 
                 abp.repaint();
             }

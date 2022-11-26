@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Interacts between Model and View.
+ */
 public class Controller {
     private Model model;
     private View view;
@@ -53,6 +56,11 @@ public class Controller {
     private BufferedImage blackKing;
     private ImageIcon blackKingRescaled;
 
+    /**
+     * Default constructor.
+     * Loads the images. Calls methods to set the backgrounds and the icons of View.
+     * Runs View in AWT Event dispatcher thread and sets the frame to be shown.
+     */
     public Controller() {
         loadPieceImages();
         selectedPiece = null;
@@ -67,6 +75,12 @@ public class Controller {
         });
     }
 
+    /**
+     * Gets called to select a piece on the given coordinates. If there is none, selectedPiece gets set to null.
+     *
+     * @param x x-coordinate
+     * @param y y-coordinate
+     */
     public void setSelectedPiece(int x, int y) {
         if (x != -1 && y != -1 && !model.isTileEmpty(x, y) && model.getColor(x, y) == model.getWhosTurn()) {
             selectedPiece = model.getTile(x, y);
@@ -80,16 +94,29 @@ public class Controller {
             selectedPiece = null;
     }
 
+    /**
+     * Sets the coordinates of the selected piece.
+     *
+     * @param x x-coordinate
+     * @param y y-coordinate
+     */
     public void setSelectedPieceCoordinates(int x, int y) {
         selectedPieceDragX = x;
         selectedPieceDragY = y;
     }
 
-    public void mouseReleased(int x, int y) {
+    /**
+     * If selectedPiece is not null, set highlighted board tiles back to their normal color, set the icon for the tile of
+     * the selected piece, call for the next half step and set selectedPiece to null.
+     *
+     * @param x x-coordinate
+     * @param y y-coordinate
+     */
+    public void deselectPiece(int x, int y) {
         if (selectedPiece != null) {
             for (int i = 0; i < 64; i++)
                 if (model.hasPieceAccessToTile(selectedPieceX, selectedPieceY, i % 8, i / 8))
-                    view.setBackground(i, getSpaceColor(i));
+                    view.setBackground(i, getTileColor(i));
 
             view.setIcon(selectedPieceY * 8 + selectedPieceX, getPieceIcon(model.getColor(selectedPieceX, selectedPieceY), model.getTile(selectedPieceX, selectedPieceY).getType()));
 
@@ -102,14 +129,29 @@ public class Controller {
         selectedPiece = null;
     }
 
-    private Color getSpaceColor(int i) {
+    /**
+     * Returns the color of the tile.
+     *
+     * @param i index the tile
+     * @return  the color of the tile
+     */
+    private Color getTileColor(int i) {
         return (i / 8 + i) % 2 == 0 ? whiteTile : blackTile;
     }
 
+    /**
+     * Returns the highlighted color of the tile.
+     *
+     * @param i the index of the tile
+     * @return  the highlighted color of the tile
+     */
     private Color getHighlightedTileColor(int i) {
         return (i / 8 + i) % 2 == 0 ? whiteTileHighlighted : blackTileHighlighted;
     }
 
+    /**
+     * Loads the images for the pieces.
+     */
     private void loadPieceImages() {
         try {
             whitePawn = ImageIO.read(new File("gfx/white_pawn.png"));
@@ -130,6 +172,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Returns the icon for the piece.
+     *
+     * @param color color of the piece
+     * @param type  type of the piece
+     * @return      icon of the piece
+     */
     private ImageIcon getPieceIcon(ChessColor color, PieceType type) {
         HashMap<Integer, ImageIcon> pieceIcons = new HashMap<>();
         pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.PAWN), whitePawnRescaled);
@@ -149,6 +198,13 @@ public class Controller {
         return pieceIcons.get(hashColorType(color, type));
     }
 
+    /**
+     * Returns a hash value for piece type and piece color.
+     *
+     * @param color color of the piece
+     * @param type  type of the piece
+     * @return      hash value for the piece
+     */
     private int hashColorType(ChessColor color, PieceType type) {
         int hash = -1;
 
@@ -168,6 +224,12 @@ public class Controller {
     }
 
 
+    /**
+     * Rescales the icons of the pieces.
+     *
+     * @param width  requested with of the icon
+     * @param height requested height of the icon
+     */
     public void rescaleIcons(int width, int height) {
         whitePawnRescaled = new ImageIcon(whitePawn.getScaledInstance(width, height, Image.SCALE_DEFAULT));
         whiteRookRescaled = new ImageIcon(whiteRook.getScaledInstance(width, height, Image.SCALE_DEFAULT));
@@ -187,6 +249,10 @@ public class Controller {
         setAllIcons();
     }
 
+
+    /**
+     * Sets all icons of the board.
+     */
     private void setAllIcons() {
         for (int i = 0; i < 64; i++) {
             int x = i % 8;
@@ -199,32 +265,55 @@ public class Controller {
         }
     }
 
+    /**
+     * Sets all backgrounds of the board.
+     */
     private void setAllBackgrounds() {
         for (int i = 0; i < 64; i++)
-            view.setBackground(i, getSpaceColor(i));
+            view.setBackground(i, getTileColor(i));
     }
 
+    /**
+     * Returns true if a piece is selected, else false.
+     *
+     * @return true if a piece is selected, else false
+     */
     public boolean isAPieceSelected() {
         return selectedPiece != null;
     }
 
-    public Image getSelectedPieceImage() {
+    /**
+     * Returns the icon for a piece.
+     *
+     * @return the icon for a piece
+     */
+    public Image getSelectedPieceIcon() {
         return getPieceIcon(model.getColor(selectedPieceX, selectedPieceY), model.getTile(selectedPieceX, selectedPieceY).getType()).getImage();
     }
 
+    /**
+     * Returns the dragged x-coordinate of the selected piece.
+     *
+     * @return the dragged x-coordinate of the selected piece
+     */
     public int getSelectedPieceDragX() {
         return selectedPieceDragX;
     }
 
+    /**
+     * Returns the dragged y-coordinate of the selected piece.
+     *
+     * @return the dragged y-coordinate of the selected piece
+     */
     public int getSelectedPieceDragY() {
         return selectedPieceDragY;
     }
 
-    /*private int coordsToSpaceX(int x) {
+    /*private int coordToIndexX(int x) {
         return x / 8;
     }
 
-    private int coordsToSpaceY(int y) {
+    private int coordToIndexY(int y) {
         return y / 8;
     }*/
 }
