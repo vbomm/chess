@@ -97,9 +97,6 @@ public class View {
         int x = -1;
         int y = -1;
 
-        //int testX = e.getX() / (labels[0].getWidth() + 1); // 1 is gap
-        //int testY = e.getY() / (labels[0].getHeight() + 1); // 1 is gap
-
         for (int i = 0; i < 8; i++)
             if (e.getX() < labels[i].getX() + labels[i].getWidth()) {
                 x = i;
