@@ -113,17 +113,18 @@ public class Controller {
      * @param y y-coordinate
      */
     public void deselectPiece(int x, int y) {
-        if (selectedPiece != null) {
-            for (int i = 0; i < 64; i++)
-                if (model.hasPieceAccessToTile(selectedPieceX, selectedPieceY, i % 8, i / 8))
-                    view.setBackground(i, getTileColor(i));
+        if (selectedPiece == null)
+            return;
 
-            view.setIcon(selectedPieceY * 8 + selectedPieceX, getPieceIcon(model.getColor(selectedPieceX, selectedPieceY), model.getTile(selectedPieceX, selectedPieceY).getType()));
+        for (int i = 0; i < 64; i++)
+            if (model.hasPieceAccessToTile(selectedPieceX, selectedPieceY, i % 8, i / 8))
+                view.setBackground(i, getTileColor(i));
 
-            if (model.movePiece(selectedPieceX, selectedPieceY, x, y)) {
-                model.nextHalfStep();
-                setAllIcons();
-            }
+        view.setIcon(selectedPieceY * 8 + selectedPieceX, getPieceIcon(model.getColor(selectedPieceX, selectedPieceY), model.getTile(selectedPieceX, selectedPieceY).getType()));
+
+        if (model.movePiece(selectedPieceX, selectedPieceY, x, y)) {
+            model.nextHalfStep();
+            setAllIcons();
         }
 
         selectedPiece = null;
