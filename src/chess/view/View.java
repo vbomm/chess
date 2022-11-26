@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Sends relevant user actions to the Controller.
+ * Receives orders from the Controller.
+ */
 public class View {
     private Controller controller;
     private JFrame frame;
@@ -16,6 +20,12 @@ public class View {
     private JPanel aboveBoardPanel;
 
 
+    /**
+     * Default constructor.
+     * Creates the visuals for the User and sends the user input to the Controller.
+     *
+     * @param controller the Controller this View communicates with
+     */
     public View(Controller controller) {
         this.controller = controller;
 
@@ -23,7 +33,7 @@ public class View {
         panel = createPanel();
 
         boardPanel = createBoardPanel();
-        labels = createSpaceLabels();
+        labels = createTileLabels();
         aboveBoardPanel = createAboveBoardPanel();
 
         labelsOverlay = new JLabel[64];
@@ -38,10 +48,18 @@ public class View {
         frame.add(panel, BorderLayout.CENTER);
     }
 
+    /**
+     * Makes the frame visible.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+    /**
+     * Creates and returns a JFrame
+     *
+     * @return created JFrame
+     */
     private JFrame createFrame() {
         JFrame f = new JFrame();
 
@@ -63,6 +81,11 @@ public class View {
         return f;
     }
 
+    /**
+     * Creates and returns a JPanel.
+     *
+     * @return created JPanel
+     */
     private JPanel createPanel() {
         JPanel p = new JPanel();
 
@@ -71,7 +94,12 @@ public class View {
         return p;
     }
 
-    private JLabel[] createSpaceLabels() {
+    /**
+     * Creates and returns an array of JLabel. Each JLabel represents a tile of the board.
+     *
+     * @return array of JLabel
+     */
+    private JLabel[] createTileLabels() {
         JLabel[] l = new JLabel[64];
 
         for (int i = 0; i < 64; i++) {
@@ -84,6 +112,11 @@ public class View {
         return l;
     }
 
+    /**
+     * Creates and returns a JPanel for the chess board.
+     *
+     * @return created JPanel
+     */
     private JPanel createBoardPanel() {
         JPanel bp = new JPanel();
 
@@ -93,9 +126,14 @@ public class View {
         return bp;
     }
 
+    /**
+     * Checks which label was clicked and if valid, sends the coordinates to the Controller.
+     *
+     * @param e the MouseEvent
+     */
     private void setSelectedLabel(MouseEvent e) {
         int x = -1;
-        int y = -1;
+        int y;
 
         for (int i = 0; i < 8; i++)
             if (e.getX() < labels[i].getX() + labels[i].getWidth()) {
@@ -112,6 +150,11 @@ public class View {
                 }
     }
 
+    /**
+     * Sends the coordinates where the selected piece should be displayed.
+     *
+     * @param e the MouseEvent
+     */
     private void setSelectedCoordinates (MouseEvent e) {
         int x = e.getX() - labelsOverlay[0].getWidth() / 2;
         int y = e.getY() - labelsOverlay[0].getHeight() / 2;
@@ -119,6 +162,12 @@ public class View {
         controller.setSelectedPieceCoordinates(x, y);
     }
 
+    /**
+     * Creates and returns a JPanel. It is used to display the selected piece.
+     * Adds Listeners for the Mouse.
+     *
+     * @return the created JPanel
+     */
     private JPanel createAboveBoardPanel() {
         JPanel abp = new JPanel() {
             @Override
@@ -177,10 +226,22 @@ public class View {
         return abp;
     }
 
+    /**
+     * Sets the background of a tile.
+     *
+     * @param i     the index of the tile
+     * @param color the new color of the tile
+     */
     public void setBackground(int i, Color color) {
         labels[i].setBackground(color);
     }
 
+    /**
+     * Sets the icon of a tile.
+     *
+     * @param i    the index of the tile
+     * @param icon the new icon of the tile
+     */
     public void setIcon(int i, ImageIcon icon) {
         labels[i].setIcon(icon);
     }
