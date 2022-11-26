@@ -1,5 +1,8 @@
 package chess.model;
 
+/**
+ * Creates lookup tables of possible moves for different piece types.
+ */
 public class LookupTables {
     private Board board;
     private int[][] knight;
@@ -8,17 +11,26 @@ public class LookupTables {
     private int[][] queen;
     private int[][] king;
 
+    /**
+     * Default constructor.
+     * Calls for each lookup table to be computed.
+     *
+     * @param board the board Object
+     */
     public LookupTables(Board board) {
         this.board = board;
 
-        initKnight();
-        initBishop();
-        initRook();
-        initQueen();
-        initKing();
+        computeKnight();
+        computeBishop();
+        computeRook();
+        computeQueen();
+        computeKing();
     }
 
-    private void initKnight() {
+    /**
+     * Computes the lookup table for the knight.
+     */
+    private void computeKnight() {
         knight = new int[64][9];
 
         for (int i = 0; i < 64; i++) {
@@ -39,7 +51,10 @@ public class LookupTables {
         }
     }
 
-    private void initBishop() {
+    /**
+     * Computes the lookup table for the bishop.
+     */
+    private void computeBishop() {
         bishop = new int[64][5];
 
         for (int i = 0; i < 64; i++) {
@@ -56,7 +71,10 @@ public class LookupTables {
         }
     }
 
-    private void initRook() {
+    /**
+     * Computes the lookup table for the rook.
+     */
+    private void computeRook() {
         rook = new int[64][5];
 
         for (int i = 0; i < 64; i++) {
@@ -73,7 +91,10 @@ public class LookupTables {
         }
     }
 
-    private void initQueen() {
+    /**
+     * Computes the lookup table for the queen.
+     */
+    private void computeQueen() {
         queen = new int[64][9];
 
         for (int i = 0; i < 64; i++) {
@@ -94,7 +115,10 @@ public class LookupTables {
         }
     }
 
-    private void initKing() {
+    /**
+     * Computes the lookup table for the king.
+     */
+    private void computeKing() {
         king = new int[64][9];
 
         for (int i = 0; i < 64; i++) {
@@ -115,22 +139,48 @@ public class LookupTables {
         }
     }
 
+    /**
+     * Returns the lookup table for the knight
+     *
+     * @return the lookup table for the knight
+     */
     public int[][] getKnight() {
         return knight;
     }
 
+
+    /**
+     * Returns the lookup table for the bishop
+     *
+     * @return the lookup table for the bishop
+     */
     public int[][] getBishop() {
         return bishop;
     }
 
+    /**
+     * Returns the lookup table for the rook.
+     *
+     * @return the lookup table for the rook
+     */
     public int[][] getRook() {
         return rook;
     }
 
+    /**
+     * Returns the lookup table for the queen.
+     *
+     * @return the lookup table for the queen
+     */
     public int[][] getQueen() {
         return queen;
     }
 
+    /**
+     * Returns the lookup table for the king.
+     *
+     * @return the lookup table for the king
+     */
     public int[][] getKing() {
         return king;
     }
