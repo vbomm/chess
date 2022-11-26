@@ -36,9 +36,9 @@ public class Bishop extends Piece {
 
         while(tile > -1) {
             if(!getBoard().isTileEmpty(tile)) {
-                if(!getBoard().isSameColor(getTile(), tile)) {
+                if(!getBoard().isSameColor(getTile(), tile))
                     captures[tile] = true;
-                }
+
                 break;
             }
             tile = lookupTable[tile][direction];
@@ -61,9 +61,9 @@ public class Bishop extends Piece {
 
         while(tile > -1) {
             if(!getBoard().isTileEmpty(tile)) {
-                if(!getBoard().isSameColor(getTile(), tile)) {
+                if(!getBoard().isSameColor(getTile(), tile))
                     captures.add(new Move(getTile(), tile, this, getBoard().getTile(tile), getBoard().getNoPawnMoveOrCaptureCounter()));
-                }
+
                 break;
             }
             moves.add(new Move(getTile(), tile, this, getBoard().getTile(tile), getBoard().getNoPawnMoveOrCaptureCounter()));
