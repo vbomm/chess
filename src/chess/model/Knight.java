@@ -25,7 +25,6 @@ public class Knight extends Piece {
         if (!isActive())
             return;
 
-        //int x = getTile();
         int m = 0;
         int tile = lookupTable[getTile()][m++];
 
@@ -33,7 +32,6 @@ public class Knight extends Piece {
             if (!getBoard().isSameColor(getTile(), tile))
                 captures[tile] = true;
 
-            //if (k == 9) break;
             tile = lookupTable[getTile()][m++];
         }
     }
