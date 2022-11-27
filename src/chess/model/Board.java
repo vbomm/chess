@@ -144,10 +144,6 @@ public class Board {
         return model.getAdvancement(color, index);
     }
 
-    //public void setTile(int index, int value) {
-    //    tile[index] = value;
-    //}
-
     /**
      * When the tile is empty, returns true, otherwise false.
      *
@@ -157,11 +153,6 @@ public class Board {
     public boolean isTileEmpty(int index) {
         return tile[index] == null;
     }
-
-    //public void setTile(int index, int tile, int color) {
-    //    this.tile[index] = tile;
-    //    this.color[index] = color;
-    //}
 
 
     /**
@@ -173,10 +164,6 @@ public class Board {
     public Piece getTile(int index) {
         return tile[index];
     }
-
-    //public void setColor(int index, int value) {
-    //    color[index] = value;
-    //}
 
     /**
      * Returns the color of the piece on the index, if empty it returns EMPTY.
