@@ -29,9 +29,8 @@ public class King extends Piece {
         int tile = lookupTable[getTile()][m++];
 
         while(tile > -1) {
-            if (!getBoard().isSameColor(getTile(), tile)) {
+            if (!getBoard().isSameColor(getTile(), tile))
                 captures[tile] = true;
-            }
 
             tile = lookupTable[getTile()][m++];
         }
