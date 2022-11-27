@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+
+/**
+ * Creates the possible moves.
+ */
 public class MoveGenerator {
     private ArrayList<Move> moves;
     private ArrayList<Move> captures;
@@ -25,6 +29,11 @@ public class MoveGenerator {
     private int[] enPassantDestinationTile;
     private HashMap<ChessColor, Integer> colorHash;
 
+    /**
+     * Default constructor.
+     *
+     * @param board the Board object
+     */
     public MoveGenerator(Board board) {
         this.board = board;
         colorHash = new HashMap<>();
@@ -35,6 +44,9 @@ public class MoveGenerator {
         initEnPassant();
     }
 
+    /**
+     * Creates the lookup variables for castling detection.
+     */
     private void initCastling() {
         castleKingStart = new int[2];
         longCastleRookStart = new int[2];
@@ -78,6 +90,9 @@ public class MoveGenerator {
         shortCasteRookDestination[1] = board.tileNameToIndex("F8");
     }
 
+    /**
+     * Checks for en passant captures.
+     */
     private void initEnPassant() {
         whoCanEnPassant = new int[64][2];
         enPassantDestinationTile = new int[64];
@@ -122,6 +137,9 @@ public class MoveGenerator {
         }
     }
 
+    /**
+     * Generates possible moves and captures for the current board.
+     */
     public void findMovesAndCaptures() {
         findThreats();
 
@@ -136,14 +154,28 @@ public class MoveGenerator {
         findCastling(moves);
     }
 
+    /**
+     * Returns the moves list.
+     *
+     * @return the moves list
+     */
     public ArrayList<Move> getLastGeneratedMoves() {
         return moves;
     }
 
+    /**
+     * Returns the capture list.
+     *
+     * @return the capture list
+     */
     public ArrayList<Move> getLastGeneratedCaptures() {
         return captures;
     }
 
+    /**
+     * Checks for tiles that are attacked by the player whose turn is next.
+     * Moves are not stored.
+     */
     private void findThreats() {
         threats = new boolean[64];
         int color = colorHash.get(board.getWhosTurn() == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE);
@@ -152,10 +184,20 @@ public class MoveGenerator {
             board.getPieceList().get(color).get(i).generateThreats(threats);
     }
 
+    /**
+     * Returns the threatened tiles.
+     *
+     * @return the threatened tiles
+     */
     public boolean[] getLastGeneratedThreats() {
         return threats;
     }
 
+    /**
+     * Generates castling moves.
+     *
+     * @param moves the moves list where the castling moves get added to
+     */
     private void findCastling(ArrayList<Move> moves) {
         int color = colorHash.get(board.getWhosTurn());
 
@@ -199,6 +241,9 @@ public class MoveGenerator {
                 && board.isTileEmpty(shortCastleEmptyTiles[color][0]) && board.isTileEmpty(shortCastleEmptyTiles[color][1]);
     }
 
+    /**
+     * Generates en passant moves.
+     */
     private void findEnPassant() {
         if (board.getMoveHistory() == null || board.getMoveHistory().size() == 0)
             return;
@@ -226,6 +271,9 @@ public class MoveGenerator {
                 ));
     }
 
+    /**
+     * Checks the moves and captures for possible illegal moves (move while in check without solving check) and removes them.
+     */
     public void removeInvalidMoves() {
         // board.getNoPawnMoveOrCaptureCounter();
 
