@@ -19,6 +19,7 @@ public class Model {
     private Evaluator evaluator;
     private int depth;
     private Engine engine;
+
 private HashMap<ChessColor, Integer> colorHash;
 
     /**

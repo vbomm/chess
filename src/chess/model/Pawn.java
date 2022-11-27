@@ -41,8 +41,6 @@ public class Pawn extends Piece {
         if (!isActive())
             return;
 
-        //int c = getTile();
-
         if(getBoard().getColumn(getTile()) > 0 && !getBoard().isSameColor(getTile(), getTile() + captureLeft)) {
             captures[getTile() + captureLeft] = true;
         }
@@ -55,8 +53,6 @@ public class Pawn extends Piece {
     public void generateMovesAndCaptures(ArrayList<Move> moves, ArrayList<Move> captures) {
         if (!isActive())
             return;
-
-        //int x = getTile();
 
         if (getBoard().isTileEmpty(getTile() + forward)) {
             moves.add(new Move(getTile(),getTile() + forward, this, getBoard().getTile(getTile() + forward), getBoard().getNoPawnMoveOrCaptureCounter()));
