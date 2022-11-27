@@ -6,6 +6,10 @@ import chess.controller.PieceType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+/**
+ * Represents the chess board.
+ */
 public class Board {
     private Model model;
     private LookupTables lookupTables;
@@ -21,6 +25,11 @@ public class Board {
     private HashMap<ChessColor, Integer> colorHash;
     private Piece[] kings;
 
+    /**
+     * Default constructor.
+     *
+     * @param model
+     */
     public Board(Model model) {
         this.model = model;
         lookupTables = new LookupTables(this);
@@ -37,6 +46,9 @@ public class Board {
         initBoard();
     }
 
+    /**
+     * Sets the variables of the board.
+     */
     private void initBoard() {
         moveHistory = new ArrayList<>();
         whosTurn = ChessColor.WHITE;
@@ -48,12 +60,18 @@ public class Board {
         initPieceLists();
     }
 
+    /**
+     * Sets all tiles of the board array to null.
+     */
     public void clear() {
         initBoard();
         for (int i = 0; i < 64; i++)
             tile[i] = null;
     }
 
+    /**
+     * Sets the piece lists.
+     */
     private void initPieceLists() {
         pieces = new ArrayList<>();
         ArrayList<Piece> whitePieces = new ArrayList<>();
@@ -62,6 +80,13 @@ public class Board {
         pieces.add(blackPieces);
     }
 
+    /**
+     * Adds a piece to the board.
+     *
+     * @param type  the type of the piece
+     * @param color the color of the piece
+     * @param index the index of the piece
+     */
     public void addPiece(PieceType type, ChessColor color, int index) {
         //if (tile[index] != null)
         //    return;
@@ -78,18 +103,43 @@ public class Board {
         pieces.get(colorHash.get(color)).add(tile[index]);
     }
 
+    /**
+     * Returns the list of the pieces.
+     *
+     * @return the list of the pieces
+     */
     public ArrayList<ArrayList<Piece>> getPieceList() {
         return pieces;
     }
 
+    /**
+     * Returns the column of an index of the board.
+     *
+     * @param index the index to look up
+     * @return      the column of the index
+     */
     public int getColumn(int index) {
         return model.getColumn(index);
     }
 
+    /**
+     * Returns the row of an index of the board.
+     *
+     * @param index the index to loop up
+     * @return      the row of the index
+     */
     public int getRow(int index) {
         return model.getRow(index);
     }
 
+    /**
+     * Returns how far away a piece is from its colors start row.
+     * For example, row 1 gives a white piece a score of 0, black piece a score of 7.
+     *
+     * @param  color the color of the piece
+     * @param  index the index where the piece is located
+     * @return the advancement score of the piece
+     */
     public int getAdvancement(ChessColor color, int index) {
         return model.getAdvancement(color, index);
     }
@@ -98,6 +148,12 @@ public class Board {
     //    tile[index] = value;
     //}
 
+    /**
+     * When the tile is empty, returns true, otherwise false.
+     *
+     * @param  index the index of the tile
+     * @return true of tile is empty, otherwise false
+     */
     public boolean isTileEmpty(int index) {
         return tile[index] == null;
     }
@@ -107,6 +163,13 @@ public class Board {
     //    this.color[index] = color;
     //}
 
+
+    /**
+     * Returns the piece on a tile, or null if empty.
+     *
+     * @param  index the index ot the tile
+     * @return the piece on the tile, or null if there is no piece
+     */
     public Piece getTile(int index) {
         return tile[index];
     }
@@ -115,6 +178,12 @@ public class Board {
     //    color[index] = value;
     //}
 
+    /**
+     * Returns the color of the piece on the index, if empty it returns EMPTY.
+     *
+     * @param index the index of the tile
+     * @return      the color of the piece at the index, if empty it returns EMPTY
+     */
     public ChessColor getColor(int index) {
         if (tile[index] == null)
             return ChessColor.EMPTY;
@@ -122,6 +191,15 @@ public class Board {
         return tile[index].getColor();
     }
 
+
+    /**
+     * If both pieces at the provides indexes have the same color, returns true.
+     * If at least one of the tiles is null, it returns false.
+     *
+     * @param index1 the index of a tile
+     * @param index2 the index of a tile
+     * @return       true if pieces have the same color, false if not, also false if at at least one tile returns null
+     */
     public boolean isSameColor(int index1, int index2) {
         if (tile[index1] == null || tile[index2] == null)
             return false;
@@ -129,20 +207,33 @@ public class Board {
         return tile[index1].getColor() == tile[index2].getColor();
     }
 
-    public void setWhosTurn(ChessColor value) {
-        whosTurn = value;
-    }
-
+    /**
+     * Returns whose turn it is.
+     *
+     * @return the color whose turn it is
+     */
     public ChessColor getWhosTurn() {
         return whosTurn;
     }
 
-
+    /**
+     * Moves a piece to one tile to another both on the board array and the piece itself.
+     * Doesn't clear the tile in the tile array where the piece is coming from.
+     *
+     * @param from
+     * @param to
+     */
     private void setPieceTile(int from, int to) {
         tile[from].setTile(to);
         tile[to] = tile[from];
     }
 
+    /**
+     * Executes a move from a Move object.
+     * Also checks for special moves.
+     *
+     * @param move the move to execute
+     */
     public void executeMove(Move move) {
         // 50 and 75 move rule
         if (move.getPiece().getType() == PieceType.PAWN || move.getTarget() != null)
@@ -204,6 +295,12 @@ public class Board {
         changeWhosTurn();
     }
 
+    /**
+     * Reverses a move from a Move object.
+     * Also checks for special moves.
+     *
+     * @param move the move to reverse
+     */
     public void reverseMove(Move move) {
         noPawnMoveOrCaptureCounter = move.getNoPawnMoveOrCaptureCounter() - 1;
 
@@ -262,6 +359,10 @@ public class Board {
         changeWhosTurn();
     }
 
+
+    /**
+     * Prints the board on the console.
+     */
     public void printBoard() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 8; x++) {
@@ -288,26 +389,56 @@ public class Board {
         System.out.println();
     }
 
+    /**
+     * Returns the tile index of a tile name. "A8" would return 0 for example.
+     *
+     * @param tileName
+     * @return
+     */
     public int tileNameToIndex(String tileName) {
         return model.tileNameToIndex(tileName);
     }
 
+    /**
+     * Switches to the other players color.
+     */
     public void changeWhosTurn() {
         whosTurn = whosTurn == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
     }
 
+    /**
+     * Returns the move history.
+     *
+     * @return the move history
+     */
     public ArrayList<Move> getMoveHistory() {
         return moveHistory;
     }
 
+    /**
+     * Returns the variable used for the 50-move/75-move rule
+     *
+     * @return the variable used for the 50-move/75-move rule
+     */
     public int getNoPawnMoveOrCaptureCounter() {
         return noPawnMoveOrCaptureCounter;
     }
 
+    /**
+     * Returns the king of the given color.
+     *
+     * @param color the color of the wanted king
+     * @return      the king of the given color
+     */
     public Piece getKing(ChessColor color) {
         return kings[colorHash.get(color)];
     }
 
+    /**
+     * Returns the lookupTables object
+     *
+     * @return the lookupTables object
+     */
     public LookupTables getLookupTables() {
         return lookupTables;
     }
