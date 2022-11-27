@@ -4,17 +4,32 @@ import chess.controller.ChessColor;
 
 import java.util.ArrayList;
 
+/**
+ * The engine to generate moves of the CPU player.
+ */
 public class Engine {
     private Board board;
     private MoveGenerator moveGenerator;
     private Evaluator evaluator;
 
+    /**
+     * The default constructor.
+     *
+     * @param board         the Board object
+     * @param moveGenerator the moveGenerator object
+     * @param evaluator     the Evaluator object
+     */
     public Engine(Board board, MoveGenerator moveGenerator, Evaluator evaluator) {
         this.board = board;
         this.moveGenerator = moveGenerator;
         this.evaluator = evaluator;
     }
 
+    /**
+     * Starts to generate and find the best move.
+     *
+     * @param depth the depth of the search
+     */
     public void move(int depth) {
         moveGenerator.findMovesAndCaptures();
         ArrayList<Move> captures = moveGenerator.getLastGeneratedCaptures();
@@ -84,6 +99,14 @@ public class Engine {
         }
     }
 
+    /**
+     * Method to generate moves recursively
+     *
+     * @param depth          the depth of the search
+     * @param bestWhiteScore the best white score
+     * @param bestBlackScore the best black score
+     * @return               the value of the move
+     */
     public int search(int depth, int bestWhiteScore, int bestBlackScore) {
         if (--depth == 0)
             return evaluator.getScore();
