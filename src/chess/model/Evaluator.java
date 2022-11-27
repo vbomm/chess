@@ -5,12 +5,20 @@ import chess.controller.PieceType;
 
 import java.util.HashMap;
 
+/**
+ * Evaluates boards.
+ */
 public class Evaluator {
     private Board board;
     private HashMap<PieceType, Integer> pieceHash;
     private HashMap<PieceType, Integer> pieceValues;
     private int[][][] position_score;
 
+    /**
+     * Default constructor.
+     *
+     * @param board the Board to be evaluated
+     */
     public Evaluator(Board board) {
         this.board = board;
 
@@ -26,6 +34,12 @@ public class Evaluator {
         initPositionScores();
     }
 
+    /**
+     * Returns the score of the Board.
+     * Piece values and the values of their position are taken into account.
+     *
+     * @return the score of the Board
+     */
     public int getScore() {
         int whiteScore = 0;
         int blackScore = 0;
@@ -41,6 +55,9 @@ public class Evaluator {
         return whiteScore - blackScore;
     }
 
+    /**
+     * Sets the values of the pieces.
+     */
     private void initPieceValues() {
         // https://chess.stackexchange.com/questions/5941/what-relative-point-values-of-pieces-do-engines-use
         pieceValues = new HashMap<>();
@@ -52,6 +69,9 @@ public class Evaluator {
         pieceValues.put(PieceType.KING, 15000);
     }
 
+    /**
+     * Sets the values of the positions for each piece type.
+     */
     private void initPositionScores() {
         position_score = new int[2][6][64];
 
@@ -119,6 +139,4 @@ public class Evaluator {
             for (int j = 0; j < 6; j++)
                 position_score[1][j][i] = position_score[0][j][63 - i];
     }
-
-
 }
