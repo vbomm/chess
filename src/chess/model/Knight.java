@@ -41,7 +41,6 @@ public class Knight extends Piece {
         if (!isActive())
             return;
 
-        //int sq = getTile();
         int m = 0;
         int tile = lookupTable[getTile()][m++];
 
