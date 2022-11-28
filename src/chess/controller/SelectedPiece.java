@@ -2,6 +2,9 @@ package chess.controller;
 
 import chess.model.Piece;
 
+/**
+ * Represents the selected piece.
+ */
 public class SelectedPiece {
     private Piece piece;
     private int x;
@@ -9,6 +12,9 @@ public class SelectedPiece {
     private int dragX;
     private int dragY;
 
+    /**
+     * Default constructor.
+     */
     public SelectedPiece() {
         piece = null;
     }
