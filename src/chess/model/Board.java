@@ -217,14 +217,30 @@ public class Board {
         tile[to] = tile[from];
     }
 
+    /**
+     * Sets a tile to a piece.
+     *
+     * @param index the index of the tile
+     * @param piece the piece
+     */
     public void setTile(int index, Piece piece) {
         tile[index] = piece;
     }
 
+    /**
+     * Calls the moveExecutor to execute a move.
+     *
+     * @param move the move to be executed
+     */
     public void executeMove(Move move) {
         moveExecutor.executeMove(move);
     }
 
+    /**
+     * Calls the moveExecutor to reverse a move.
+     *
+     * @param move the move to be reversed
+     */
     public void reverseMove(Move move) {
         moveExecutor.reverseMove(move);
     }
