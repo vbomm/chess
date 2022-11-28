@@ -12,6 +12,7 @@ import java.util.HashMap;
  */
 public class Board {
     private Model model;
+    private MoveExecutor moveExecutor;
     private LookupTables lookupTables;
     private Piece[] tile;
     private ArrayList<ArrayList<Piece>> pieces;
@@ -32,6 +33,7 @@ public class Board {
      */
     public Board(Model model) {
         this.model = model;
+        moveExecutor = new MoveExecutor(this);
         lookupTables = new LookupTables(this);
 
         tile = new Piece[64];
@@ -178,7 +180,6 @@ public class Board {
         return tile[index].getColor();
     }
 
-
     /**
      * If both pieces at the provides indexes have the same color, returns true.
      * If at least one of the tiles is null, it returns false.
@@ -203,6 +204,7 @@ public class Board {
         return whosTurn;
     }
 
+
     /**
      * Moves a piece to one tile to another both on the board array and the piece itself.
      * Doesn't clear the tile in the tile array where the piece is coming from.
@@ -210,142 +212,22 @@ public class Board {
      * @param from
      * @param to
      */
-    private void setPieceTile(int from, int to) {
+    public void setPieceTile(int from, int to) {
         tile[from].setTile(to);
         tile[to] = tile[from];
     }
 
-    /**
-     * Executes a move from a Move object.
-     * Also checks for special moves.
-     *
-     * @param move the move to execute
-     */
+    public void setTile(int index, Piece piece) {
+        tile[index] = piece;
+    }
+
     public void executeMove(Move move) {
-        // 50 and 75 move rule
-        if (move.getPiece().getType() == PieceType.PAWN || move.getTarget() != null)
-            noPawnMoveOrCaptureCounter = 0;
-        else
-            noPawnMoveOrCaptureCounter = move.getNoPawnMoveOrCaptureCounter() + 1;
-
-        if (tile[move.getStart()].getType() == PieceType.KING) {
-            kings[colorHash.get(move.getPiece().getColor())] = move.getPiece();
-
-            if (move.getStart() - move.getDestination() == 2)
-                // long castling
-                if (move.getStart() == 4) {
-                    // black
-                    setPieceTile(0, 3);
-                    tile[0] = null;
-                } else {
-                    // white
-                    setPieceTile(56, 59);
-                    tile[56] = null;
-                }
-            else if (move.getStart() - move.getDestination() == -2)
-                // short castling
-                if (move.getStart() == 4) {
-                    // black
-                    setPieceTile(7, 5);
-                    tile[7] = null;
-                } else {
-                    // white
-                    setPieceTile(63, 61);
-                    tile[63] = null;
-                }
-        }
-
-        // deactivate target
-        if (move.getTarget() != null)
-            move.getTarget().deactivate();
-
-        // move piece
-        setPieceTile(move.getStart(), move.getDestination());
-        tile[move.getStart()] = null;
-
-        // pawn special moves
-        if (tile[move.getDestination()].getType() == PieceType.PAWN) {
-            // promotion
-            if (model.getAdvancement(whosTurn, move.getDestination()) == 7) {
-                move.getPiece().deactivate();
-                addPiece(PieceType.QUEEN, whosTurn, move.getDestination());
-            }
-
-            // en passant
-            if (move.getTarget() != null && move.getDestination() != move.getTarget().getTile())
-                tile[move.getTarget().getTile()] = null;
-        }
-
-        move.getPiece().increaseMoveCounter();
-        moveHistory.add(move);
-
-        changeWhosTurn();
+        moveExecutor.executeMove(move);
     }
 
-    /**
-     * Reverses a move from a Move object.
-     * Also checks for special moves.
-     *
-     * @param move the move to reverse
-     */
     public void reverseMove(Move move) {
-        noPawnMoveOrCaptureCounter = move.getNoPawnMoveOrCaptureCounter() - 1;
-
-        if (tile[move.getDestination()].getType() == PieceType.KING) {
-            kings[colorHash.get(move.getPiece().getColor())] = move.getPiece();
-
-            if (move.getStart() - move.getDestination() == 2)
-                // long castling
-                if (move.getStart() == 4) {
-                    // black
-                    setPieceTile(3, 0);
-                    tile[3] = null;
-                } else {
-                    // white
-                    setPieceTile(59, 56);
-                    tile[59] = null;
-                }
-            else if (move.getStart() - move.getDestination() == -2)
-                // short castling
-                if (move.getStart() == 4) {
-                    // black
-                    setPieceTile(5, 7);
-                    tile[5] = null;
-                } else {
-                    // white
-                    setPieceTile(61, 63);
-                    tile[61] = null;
-                }
-        }
-
-        // undo promotion, remove queen from piece list and activate pawn
-        if (tile[move.getDestination()].getType() == PieceType.QUEEN && move.getPiece().getType() == PieceType.PAWN) {
-            pieces.get(colorHash.get(move.getPiece().getColor())).remove(pieces.get(colorHash.get(move.getPiece().getColor())).size() - 1);
-            tile[move.getDestination()].deactivate();
-            tile[move.getDestination()] = null;
-            move.getPiece().activate();
-        }
-        // undo move, also works to undo promotion as long pawn gets activated and queen deactivated
-        tile[move.getStart()] = move.getPiece();
-        move.getPiece().setTile(move.getStart());
-        tile[move.getStart()].setTile(move.getStart());
-
-        // undo en passant
-        if (move.getTarget() != null && move.getDestination() != move.getTarget().getTile()) {
-            tile[move.getTarget().getTile()] = move.getTarget();
-            tile[move.getDestination()] = null;
-        } else
-            tile[move.getDestination()] = move.getTarget();
-
-        if (move.getTarget() != null)
-            move.getTarget().activate();
-
-        move.getPiece().decreaseMoveCounter();
-        moveHistory.remove(move);
-
-        changeWhosTurn();
+        moveExecutor.reverseMove(move);
     }
-
 
     /**
      * Prints the board on the console.
@@ -402,6 +284,11 @@ public class Board {
         return moveHistory;
     }
 
+
+    public void setNoPawnMoveOrCaptureCounter(int value) {
+        noPawnMoveOrCaptureCounter = value;
+    }
+
     /**
      * Returns the variable used for the 50-move/75-move rule
      *
@@ -409,6 +296,10 @@ public class Board {
      */
     public int getNoPawnMoveOrCaptureCounter() {
         return noPawnMoveOrCaptureCounter;
+    }
+
+    public void setKing(ChessColor color, Piece king) {
+        kings[colorHash.get(color)] = king;
     }
 
     /**
@@ -428,5 +319,17 @@ public class Board {
      */
     public LookupTables getLookupTables() {
         return lookupTables;
+    }
+
+    public void removeLastPiece(ChessColor color) {
+        pieces.get(colorHash.get(color)).remove(pieces.get(colorHash.get(color)).size() - 1);
+    }
+
+    public void addMoveToHistory(Move move) {
+        moveHistory.add(move);
+    }
+
+    public void removeMoveFromHistory(Move move) {
+        moveHistory.remove(move);
     }
 }
