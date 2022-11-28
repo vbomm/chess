@@ -17,12 +17,7 @@ import java.util.HashMap;
 public class Controller {
     private Model model;
     private View view;
-
-    private Piece selectedPiece;
-    private int selectedPieceX;
-    private int selectedPieceY;
-    private int selectedPieceDragX;
-    private int selectedPieceDragY;
+    private SelectedPiece selectedPiece;
 
     final private Color whiteTile = new Color(226, 229, 240);
     final private Color whiteTileHighlighted = new Color(226, 229, 140);
@@ -63,7 +58,7 @@ public class Controller {
      */
     public Controller() {
         loadPieceImages();
-        selectedPiece = null;
+        selectedPiece = new SelectedPiece();
 
         model = new Model();
         view = new View(this);
@@ -83,15 +78,14 @@ public class Controller {
      */
     public void setSelectedPiece(int x, int y) {
         if (x != -1 && y != -1 && !model.isTileEmpty(x, y) && model.getColor(x, y) == model.getWhosTurn()) {
-            selectedPiece = model.getTile(x, y);
-            selectedPieceX = x;
-            selectedPieceY = y;
+            selectedPiece.setSelectedPiece(model.getTile(x, y));
             view.setIcon(y * 8 + x, null);
+
             for (int i = 0; i < 64; i++)
-                if (model.hasPieceAccessToTile(selectedPieceX, selectedPieceY, i % 8, i / 8))
+                if (model.hasPieceAccessToTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY(), i % 8, i / 8))
                     view.setBackground(i, getHighlightedTileColor(i));
         } else
-            selectedPiece = null;
+            selectedPiece.setSelectedPiece(null);
     }
 
     /**
@@ -101,8 +95,7 @@ public class Controller {
      * @param y y-coordinate
      */
     public void setSelectedPieceCoordinates(int x, int y) {
-        selectedPieceDragX = x;
-        selectedPieceDragY = y;
+        selectedPiece.setSelectedPieceDragXY(x, y);
     }
 
     /**
@@ -113,21 +106,21 @@ public class Controller {
      * @param y y-coordinate
      */
     public void deselectPiece(int x, int y) {
-        if (selectedPiece == null)
+        if (selectedPiece.getSelectedPiece() == null)
             return;
 
         for (int i = 0; i < 64; i++)
-            if (model.hasPieceAccessToTile(selectedPieceX, selectedPieceY, i % 8, i / 8))
+            if (model.hasPieceAccessToTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY(), i % 8, i / 8))
                 view.setBackground(i, getTileColor(i));
 
-        view.setIcon(selectedPieceY * 8 + selectedPieceX, getPieceIcon(model.getColor(selectedPieceX, selectedPieceY), model.getTile(selectedPieceX, selectedPieceY).getType()));
+        view.setIcon(selectedPiece.getSelectedPieceY() * 8 + selectedPiece.getSelectedPieceX(), getPieceIcon(model.getColor(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()), model.getTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()).getType()));
 
-        if (model.movePiece(selectedPieceX, selectedPieceY, x, y)) {
+        if (model.movePiece(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY(), x, y)) {
             model.nextHalfStep();
             setAllIcons();
         }
 
-        selectedPiece = null;
+        selectedPiece.setSelectedPiece(null);
     }
 
     /**
@@ -280,7 +273,7 @@ public class Controller {
      * @return true if a piece is selected, else false
      */
     public boolean isAPieceSelected() {
-        return selectedPiece != null;
+        return selectedPiece.getSelectedPiece() != null;
     }
 
     /**
@@ -289,7 +282,7 @@ public class Controller {
      * @return the icon for a piece
      */
     public Image getSelectedPieceIcon() {
-        return getPieceIcon(model.getColor(selectedPieceX, selectedPieceY), model.getTile(selectedPieceX, selectedPieceY).getType()).getImage();
+        return getPieceIcon(model.getColor(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()), model.getTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()).getType()).getImage();
     }
 
     /**
@@ -298,7 +291,7 @@ public class Controller {
      * @return the dragged x-coordinate of the selected piece
      */
     public int getSelectedPieceDragX() {
-        return selectedPieceDragX;
+        return selectedPiece.getSelectedPieceDragX();
     }
 
     /**
@@ -307,7 +300,7 @@ public class Controller {
      * @return the dragged y-coordinate of the selected piece
      */
     public int getSelectedPieceDragY() {
-        return selectedPieceDragY;
+        return selectedPiece.getSelectedPieceDragY();
     }
 
     /*private int coordToIndexX(int x) {
