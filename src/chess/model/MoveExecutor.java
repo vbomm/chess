@@ -31,7 +31,7 @@ public class MoveExecutor {
             board.setNoPawnMoveOrCaptureCounter(move.getNoPawnMoveOrCaptureCounter() + 1);
 
         if (board.getTile(move.getStart()).getType() == PieceType.KING) {
-            board.setKing(move.getPiece().getColor(), move.getPiece());
+            //board.setKing(move.getPiece().getColor(), move.getPiece());
 
             if (move.getStart() - move.getDestination() == 2)
                 // long castling
@@ -94,7 +94,7 @@ public class MoveExecutor {
         board.setNoPawnMoveOrCaptureCounter(move.getNoPawnMoveOrCaptureCounter() - 1);
 
         if (board.getTile(move.getDestination()).getType() == PieceType.KING) {
-            board.setKing(move.getPiece().getColor(), move.getPiece());
+            //board.setKing(move.getPiece().getColor(), move.getPiece());
 
             if (move.getStart() - move.getDestination() == 2)
                 // long castling

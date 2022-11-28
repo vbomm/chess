@@ -298,9 +298,9 @@ public class Board {
         return noPawnMoveOrCaptureCounter;
     }
 
-    public void setKing(ChessColor color, Piece king) {
+    /*public void setKing(ChessColor color, Piece king) {
         kings[colorHash.get(color)] = king;
-    }
+    }*/
 
     /**
      * Returns the king of the given color.
