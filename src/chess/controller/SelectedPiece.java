@@ -3,64 +3,64 @@ package chess.controller;
 import chess.model.Piece;
 
 public class SelectedPiece {
-    private Piece selectedPiece;
-    private int selectedPieceX;
-    private int selectedPieceY;
-    private int selectedPieceDragX;
-    private int selectedPieceDragY;
+    private Piece piece;
+    private int x;
+    private int y;
+    private int dragX;
+    private int dragY;
 
     public SelectedPiece() {
-        selectedPiece = null;
+        piece = null;
     }
 
-    public Piece getSelectedPiece() {
-        return selectedPiece;
+    public Piece getPiece() {
+        return piece;
     }
 
-    public void setSelectedPiece(Piece selectedPiece) {
-        this.selectedPiece = selectedPiece;
+    public void setPiece(Piece piece) {
+        this.piece = piece;
 
-        if (selectedPiece == null)
+        if (piece == null)
             return;
 
-        selectedPieceX = selectedPiece.getTile() % 8;
-        selectedPieceY = selectedPiece.getTile() / 8;
+        x = piece.getTile() % 8;
+        y = piece.getTile() / 8;
     }
 
-    public int getSelectedPieceX() {
-        return selectedPieceX;
+    public int getX() {
+        return x;
     }
 
-    public void setSelectedPieceX(int selectedPieceX) {
-        this.selectedPieceX = selectedPieceX;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public int getSelectedPieceY() {
-        return selectedPieceY;
+    public int getY() {
+        return y;
     }
 
-    public void setSelectedPieceY(int selectedPieceY) {
-        this.selectedPieceY = selectedPieceY;
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public int getSelectedPieceDragX() {
-        return selectedPieceDragX;
+    public int getDragX() {
+        return dragX;
     }
 
-    public void setSelectedPieceDragX(int selectedPieceDragX) {
-        this.selectedPieceDragX = selectedPieceDragX;
+    public void setDragX(int dragX) {
+        this.dragX = dragX;
     }
 
-    public int getSelectedPieceDragY() {
-        return selectedPieceDragY;
+    public int getDragY() {
+        return dragY;
     }
 
-    public void setSelectedPieceDragY(int selectedPieceDragY) {
-        this.selectedPieceDragY = selectedPieceDragY;
+    public void setDragY(int dragY) {
+        this.dragY = dragY;
     }
 
     public void setSelectedPieceDragXY(int selectedPieceDragX, int selectedPieceDragY) {
-        this.selectedPieceDragX = selectedPieceDragX;
-        this.selectedPieceDragY = selectedPieceDragY;
+        this.dragX = selectedPieceDragX;
+        this.dragY = selectedPieceDragY;
     }
 }

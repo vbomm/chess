@@ -78,14 +78,14 @@ public class Controller {
      */
     public void setSelectedPiece(int x, int y) {
         if (x != -1 && y != -1 && !model.isTileEmpty(x, y) && model.getColor(x, y) == model.getWhosTurn()) {
-            selectedPiece.setSelectedPiece(model.getTile(x, y));
+            selectedPiece.setPiece(model.getTile(x, y));
             view.setIcon(y * 8 + x, null);
 
             for (int i = 0; i < 64; i++)
-                if (model.hasPieceAccessToTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY(), i % 8, i / 8))
+                if (model.hasPieceAccessToTile(selectedPiece.getX(), selectedPiece.getY(), i % 8, i / 8))
                     view.setBackground(i, getHighlightedTileColor(i));
         } else
-            selectedPiece.setSelectedPiece(null);
+            selectedPiece.setPiece(null);
     }
 
     /**
@@ -106,21 +106,21 @@ public class Controller {
      * @param y y-coordinate
      */
     public void deselectPiece(int x, int y) {
-        if (selectedPiece.getSelectedPiece() == null)
+        if (selectedPiece.getPiece() == null)
             return;
 
         for (int i = 0; i < 64; i++)
-            if (model.hasPieceAccessToTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY(), i % 8, i / 8))
+            if (model.hasPieceAccessToTile(selectedPiece.getX(), selectedPiece.getY(), i % 8, i / 8))
                 view.setBackground(i, getTileColor(i));
 
-        view.setIcon(selectedPiece.getSelectedPieceY() * 8 + selectedPiece.getSelectedPieceX(), getPieceIcon(model.getColor(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()), model.getTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()).getType()));
+        view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX(), selectedPiece.getY()).getType()));
 
-        if (model.movePiece(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY(), x, y)) {
+        if (model.movePiece(selectedPiece.getX(), selectedPiece.getY(), x, y)) {
             model.nextHalfStep();
             setAllIcons();
         }
 
-        selectedPiece.setSelectedPiece(null);
+        selectedPiece.setPiece(null);
     }
 
     /**
@@ -273,7 +273,7 @@ public class Controller {
      * @return true if a piece is selected, else false
      */
     public boolean isAPieceSelected() {
-        return selectedPiece.getSelectedPiece() != null;
+        return selectedPiece.getPiece() != null;
     }
 
     /**
@@ -282,7 +282,7 @@ public class Controller {
      * @return the icon for a piece
      */
     public Image getSelectedPieceIcon() {
-        return getPieceIcon(model.getColor(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()), model.getTile(selectedPiece.getSelectedPieceX(), selectedPiece.getSelectedPieceY()).getType()).getImage();
+        return getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX(), selectedPiece.getY()).getType()).getImage();
     }
 
     /**
@@ -291,7 +291,7 @@ public class Controller {
      * @return the dragged x-coordinate of the selected piece
      */
     public int getSelectedPieceDragX() {
-        return selectedPiece.getSelectedPieceDragX();
+        return selectedPiece.getDragX();
     }
 
     /**
@@ -300,7 +300,7 @@ public class Controller {
      * @return the dragged y-coordinate of the selected piece
      */
     public int getSelectedPieceDragY() {
-        return selectedPiece.getSelectedPieceDragY();
+        return selectedPiece.getDragY();
     }
 
     /*private int coordToIndexX(int x) {
