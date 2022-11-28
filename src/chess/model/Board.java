@@ -6,7 +6,6 @@ import chess.controller.PieceType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 /**
  * Represents the chess board.
  */
@@ -90,9 +89,6 @@ public class Board {
      * @param index the index of the piece
      */
     public void addPiece(PieceType type, ChessColor color, int index) {
-        //if (tile[index] != null)
-        //    return;
-
         switch (type) {
             case PAWN: tile[index] = new Pawn(this, color, index); break;
             case KNIGHT: tile[index] = new Knight(this, color, index); break;
@@ -156,7 +152,6 @@ public class Board {
         return tile[index] == null;
     }
 
-
     /**
      * Returns the piece on a tile, or null if empty.
      *
@@ -203,7 +198,6 @@ public class Board {
     public ChessColor getWhosTurn() {
         return whosTurn;
     }
-
 
     /**
      * Moves a piece to one tile to another both on the board array and the piece itself.
@@ -300,7 +294,6 @@ public class Board {
         return moveHistory;
     }
 
-
     /**
      * Sets the variable used for the 50-move/75-move rule.
      *
@@ -318,10 +311,6 @@ public class Board {
     public int getNoPawnMoveOrCaptureCounter() {
         return noPawnMoveOrCaptureCounter;
     }
-
-    /*public void setKing(ChessColor color, Piece king) {
-        kings[colorHash.get(color)] = king;
-    }*/
 
     /**
      * Returns the king of the given color.
