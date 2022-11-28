@@ -285,6 +285,11 @@ public class Board {
     }
 
 
+    /**
+     * Sets the variable used for the 50-move/75-move rule.
+     *
+     * @param value the new value of the counter
+     */
     public void setNoPawnMoveOrCaptureCounter(int value) {
         noPawnMoveOrCaptureCounter = value;
     }
@@ -321,14 +326,30 @@ public class Board {
         return lookupTables;
     }
 
+    /**
+     * Removes that last piece on a piece list.
+     * At the moment used to remove pieces after undoing pawn promotion.
+     *
+     * @param color the color of the piece to remove
+     */
     public void removeLastPiece(ChessColor color) {
         pieces.get(colorHash.get(color)).remove(pieces.get(colorHash.get(color)).size() - 1);
     }
 
+    /**
+     * Adds move to history.
+     *
+     * @param move move to be added to history
+     */
     public void addMoveToHistory(Move move) {
         moveHistory.add(move);
     }
 
+    /**
+     * Removes move from history.
+     *
+     * @param move move to be removed from history
+     */
     public void removeMoveFromHistory(Move move) {
         moveHistory.remove(move);
     }
