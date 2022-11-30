@@ -45,6 +45,7 @@ improve speed<br>
 
 user interface (low priority, since main interest is developing the chess engine)<br>
 - add error message when images could not be found
+- run engine and interface on different threads
 
 ### You need at least Java SE 15 to run the jar
 You can get the newest version here: https://www.oracle.com/java/technologies/downloads/
