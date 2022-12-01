@@ -41,12 +41,11 @@ public class Pawn extends Piece {
         if (!isActive())
             return;
 
-        if(getBoard().getColumn(getTile()) > 0 && !getBoard().isSameColor(getTile(), getTile() + captureLeft)) {
+        if(getBoard().getColumn(getTile()) > 0 && !getBoard().isSameColor(getTile(), getTile() + captureLeft))
             captures[getTile() + captureLeft] = true;
-        }
-        if(getBoard().getColumn(getTile()) < 7 && !getBoard().isSameColor(getTile(), getTile() + captureRight)) {
+
+        if(getBoard().getColumn(getTile()) < 7 && !getBoard().isSameColor(getTile(), getTile() + captureRight))
             captures[getTile() + captureRight] = true;
-        }
     }
 
     @Override
