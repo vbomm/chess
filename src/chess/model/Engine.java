@@ -93,7 +93,7 @@ public class Engine {
         if (bestMove != null)
             board.executeMove(bestMove);
         else {
-            System.out.println(captures.size() + " " + moves.size());
+            System.err.println(captures.size() + " " + moves.size());
             System.err.println("Was unable to move");
             board.changeWhosTurn();
         }
