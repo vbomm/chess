@@ -303,12 +303,4 @@ public class Controller {
     public int getSelectedPieceDragY() {
         return selectedPiece.getDragY();
     }
-
-    /*private int coordToIndexX(int x) {
-        return x / 8;
-    }
-
-    private int coordToIndexY(int y) {
-        return y / 8;
-    }*/
 }
