@@ -23,7 +23,7 @@ public class Model {
 private HashMap<ChessColor, Integer> colorHash;
 
     /**
-     * Default constructor.
+     * Calls method to put pieces on their starting points and calls for the first half step to be generated or received.
      */
     public Model() {
         colorHash = new HashMap<>();

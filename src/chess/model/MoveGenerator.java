@@ -30,7 +30,8 @@ public class MoveGenerator {
     private HashMap<ChessColor, Integer> colorHash;
 
     /**
-     * Default constructor.
+     * Sets up HashMap for color lookup in an array and calls methods to initialise variables needed for castling
+     * and en passant detection.
      *
      * @param board the Board object
      */

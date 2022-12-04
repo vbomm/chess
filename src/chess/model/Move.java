@@ -11,7 +11,7 @@ public class Move {
     private Piece target;
 
     /**
-     * Default constructor.
+     * Receives and sets all needed information of the move.
      *
      * @param start                      the start tile of the move
      * @param destination                the destination of the move

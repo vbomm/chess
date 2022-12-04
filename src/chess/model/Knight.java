@@ -9,7 +9,7 @@ public class Knight extends Piece {
     private int[][] lookupTable;
 
     /**
-     * Initializes a new Knight and gets the corresponding lookup table for moves.
+     * Instantiates a new Knight and gets the corresponding lookup table for moves.
      *
      * @param board the Board object
      * @param color the color of this Object

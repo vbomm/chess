@@ -9,7 +9,7 @@ public class MoveExecutor {
     private Board board;
 
     /**
-     * Default constructor.
+     * Assigns board to the board the moves are executed on.
      *
      * @param board the board moves are executed on
      */

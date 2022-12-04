@@ -12,7 +12,6 @@ public class LookupTables {
     private int[][] king;
 
     /**
-     * Default constructor.
      * Calls for each lookup table to be computed.
      *
      * @param board the board Object
