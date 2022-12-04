@@ -138,7 +138,7 @@ public abstract class Piece {
     /**
      * Returns yes of the move counter is zero, otherwise false.
      *
-     * @return yes if move vounter is zer0, otherweise false
+     * @return yes if move counter is zer0, otherwise false
      */
     public boolean neverMoved() {
         return moveCounter == 0;
