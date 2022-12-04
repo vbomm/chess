@@ -174,8 +174,7 @@ public class MoveGenerator {
     }
 
     /**
-     * Checks for tiles that are attacked by the player whose turn is next.
-     * Moves are not stored.
+     * Checks for tiles that are attacked by the opponent player.
      */
     private void findThreats() {
         threats = new boolean[64];
