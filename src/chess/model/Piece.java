@@ -44,7 +44,7 @@ public abstract class Piece {
     /**
      * Returns the Board.
      *
-     * @return Board object
+     * @return Board object the Piece is on
      */
     public Board getBoard() {
         return board;
