@@ -19,10 +19,10 @@ public abstract class Piece {
     /**
      * Sets Piece to active and the moveCounter to 0.
      *
-     * @param board
-     * @param color
-     * @param pieceType
-     * @param tile
+     * @param board     the Board the piece is on
+     * @param color     the color of the piece
+     * @param pieceType the type of the piece
+     * @param tile      the tile where the piece is placed on the Board
      */
     public Piece(Board board, ChessColor color, PieceType pieceType, int tile) {
         this.board = board;
