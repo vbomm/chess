@@ -81,7 +81,7 @@ public abstract class Piece {
     /**
      * Returns the tile of the piece on the board.
      *
-     * @return tile of the piece on the board.
+     * @return tile of the piece on the board
      */
     public int getTile() {
         return tile;
@@ -115,7 +115,7 @@ public abstract class Piece {
     /**
      * Returns some values of the piece.
      *
-     * @return color, piece type, tile and if it active or not
+     * @return color, piece type, tile and if the Piece is active or not
      */
     public String toString() {
         return color + "" +  pieceType + tile + isActive;
