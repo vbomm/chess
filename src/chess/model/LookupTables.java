@@ -27,7 +27,7 @@ public class LookupTables {
     }
 
     /**
-     * Computes the lookup table for the knight.
+     * Generates the lookup table for the knight.
      */
     private void computeKnight() {
         knight = new int[64][9];
@@ -51,7 +51,7 @@ public class LookupTables {
     }
 
     /**
-     * Computes the lookup table for the bishop.
+     * Generates the lookup table for the bishop.
      */
     private void computeBishop() {
         bishop = new int[64][5];
@@ -71,7 +71,7 @@ public class LookupTables {
     }
 
     /**
-     * Computes the lookup table for the rook.
+     * Generates the lookup table for the rook.
      */
     private void computeRook() {
         rook = new int[64][5];
@@ -91,7 +91,7 @@ public class LookupTables {
     }
 
     /**
-     * Computes the lookup table for the queen.
+     * Generates the lookup table for the queen.
      */
     private void computeQueen() {
         queen = new int[64][9];
@@ -115,7 +115,7 @@ public class LookupTables {
     }
 
     /**
-     * Computes the lookup table for the king.
+     * Generates the lookup table for the king.
      */
     private void computeKing() {
         king = new int[64][9];
