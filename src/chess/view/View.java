@@ -21,7 +21,6 @@ public class View {
 
 
     /**
-     * Default constructor.
      * Creates the visuals for the User and sends the user input to the Controller.
      *
      * @param controller the Controller this View communicates with
