@@ -12,9 +12,6 @@ public class SelectedPiece {
     private int dragX;
     private int dragY;
 
-    /**
-     * Default constructor.
-     */
     public SelectedPiece() {
         piece = null;
     }

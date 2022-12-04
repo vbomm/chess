@@ -52,7 +52,6 @@ public class Controller {
     private ImageIcon blackKingRescaled;
 
     /**
-     * Default constructor.
      * Loads the images. Calls methods to set the backgrounds and the icons of View.
      * Runs View in AWT Event dispatcher thread and sets the frame to be shown.
      */
