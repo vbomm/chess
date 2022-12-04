@@ -36,7 +36,7 @@ public abstract class Piece {
     /**
      * Generate captures and add true for possible captures to boolean array.
      *
-     * @param c
+     * @param c boolean array where true means tile is under attack by opponent
      */
     public abstract void generateThreats(boolean[] c);
     public abstract void generateMovesAndCaptures(ArrayList<Move> moves, ArrayList<Move> captures);
