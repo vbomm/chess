@@ -17,7 +17,7 @@ public abstract class Piece {
     private int moveCounter;
 
     /**
-     * Initializes a new Piece, sets it to active and the moveCounter to 0.
+     * Sets Piece to active and the moveCounter to 0.
      *
      * @param board
      * @param color
