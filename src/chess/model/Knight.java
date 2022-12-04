@@ -13,7 +13,7 @@ public class Knight extends Piece {
      *
      * @param board the Board object
      * @param color the color of this Object
-     * @param tile the tile of this Object
+     * @param tile  the tile of this Object
      */
     public Knight(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.KNIGHT, tile);

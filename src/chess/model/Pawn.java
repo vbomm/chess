@@ -17,7 +17,7 @@ public class Pawn extends Piece {
      *
      * @param board the Board object
      * @param color the color of this Object
-     * @param tile the tile of this Object
+     * @param tile  the tile of this Object
      */
     public Pawn(Board board, ChessColor color, int tile) {
         super(board, color, PieceType.PAWN, tile);
