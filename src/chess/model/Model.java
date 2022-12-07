@@ -4,6 +4,8 @@ import chess.controller.ChessColor;
 import chess.controller.PieceType;
 
 import java.util.HashMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * The Model.
@@ -39,7 +41,7 @@ private HashMap<ChessColor, Integer> colorHash;
         moveGenerator = new MoveGenerator(board);
         evaluator = new Evaluator(board);
         depth = 4;
-        engine = new Engine(board, moveGenerator, evaluator);
+        engine = new Engine(board, moveGenerator, evaluator, depth);
 
         setupBoard();
         nextHalfStep();
@@ -53,8 +55,25 @@ private HashMap<ChessColor, Integer> colorHash;
      */
     public void nextHalfStep() {
         if (board.getWhosTurn() == ChessColor.BLACK) {
-            engine.move(depth);
-            nextHalfStep();
+            CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(engine::move);
+
+            CompletableFuture<Void> future = completableFuture
+                    .thenRun(() -> nextHalfStep());
+            System.out.println("tws");
+            try {
+                future.get();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+
+            //future.join();
+            //future.thenAcceptAsync( () -> {
+            //    System.out.println("finished");;
+            //});
+            //engine.move(depth);
+            //nextHalfStep();
         } else {
             moveGenerator.findMovesAndCaptures();
             moveGenerator.removeInvalidMoves();

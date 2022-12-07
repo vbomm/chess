@@ -11,6 +11,7 @@ public class Engine {
     private Board board;
     private MoveGenerator moveGenerator;
     private Evaluator evaluator;
+    private int depth;
 
     /**
      * The default constructor.
@@ -19,18 +20,17 @@ public class Engine {
      * @param moveGenerator the moveGenerator object
      * @param evaluator     the Evaluator object
      */
-    public Engine(Board board, MoveGenerator moveGenerator, Evaluator evaluator) {
+    public Engine(Board board, MoveGenerator moveGenerator, Evaluator evaluator, int depth) {
         this.board = board;
         this.moveGenerator = moveGenerator;
         this.evaluator = evaluator;
+        this.depth = depth;
     }
 
     /**
-     * Starts to generate and find the best move.
-     *
-     * @param depth the depth of the search
+     * Generates the best move.
      */
-    public void move(int depth) {
+    public void move() {
         moveGenerator.findMovesAndCaptures();
         ArrayList<Move> captures = moveGenerator.getLastGeneratedCaptures();
         ArrayList<Move> moves = moveGenerator.getLastGeneratedMoves();
