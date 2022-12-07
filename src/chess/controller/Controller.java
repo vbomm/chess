@@ -56,11 +56,13 @@ public class Controller {
      * Runs View in AWT Event dispatcher thread and sets the frame to be shown.
      */
     public Controller() {
-        loadPieceImages();
         selectedPiece = new SelectedPiece();
 
         model = new Model();
         view = new View(this);
+
+        loadPieceImages();
+
         setAllBackgrounds();
         setAllIcons();
 
@@ -161,7 +163,7 @@ public class Controller {
             blackQueen = ImageIO.read(new File("gfx/black_queen.png"));
             blackKing = ImageIO.read(new File("gfx/black_king.png"));
         } catch (IOException e) {
-            System.err.println("IO error");
+            view.displayMessage("Error opening images!", "Error");
         }
     }
 

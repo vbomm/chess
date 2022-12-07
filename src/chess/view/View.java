@@ -244,4 +244,14 @@ public class View {
     public void setIcon(int i, ImageIcon icon) {
         labels[i].setIcon(icon);
     }
+
+    /**
+     * Displays a message box with given texts.
+     *
+     * @param messageText the text of the message
+     * @param titleText  the text of the button
+     */
+    public void displayMessage(String messageText, String titleText) {
+        JOptionPane.showMessageDialog(null, messageText, titleText, JOptionPane.PLAIN_MESSAGE);
+    }
 }
