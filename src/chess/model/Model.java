@@ -59,7 +59,7 @@ private HashMap<ChessColor, Integer> colorHash;
 
             CompletableFuture<Void> future = completableFuture
                     .thenRun(() -> nextHalfStep());
-            System.out.println("tws");
+
             try {
                 future.get();
             } catch (InterruptedException e) {
@@ -67,13 +67,6 @@ private HashMap<ChessColor, Integer> colorHash;
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }
-
-            //future.join();
-            //future.thenAcceptAsync( () -> {
-            //    System.out.println("finished");;
-            //});
-            //engine.move(depth);
-            //nextHalfStep();
         } else {
             moveGenerator.findMovesAndCaptures();
             moveGenerator.removeInvalidMoves();
