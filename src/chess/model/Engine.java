@@ -125,56 +125,6 @@ public class Engine {
                 }
         }
 
-        /*
-        if (!captures.isEmpty())
-            for (var c : captures) {
-                board.executeMove(c);
-                currentscore = search(depth, bestWhiteScore, bestBlackScore);
-                board.reverseMove(c);
-                if (board.getWhosTurn() == ChessColor.WHITE) {
-                    if (currentscore > bestScore || currentscore == bestScore && Math.random() < 0.5) {
-                        bestScore = currentscore;
-                        bestWhiteScore = Math.max(bestWhiteScore, currentscore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                } else {
-                    if (currentscore < bestScore || currentscore == bestScore && Math.random() < 0.5) {
-                        bestScore = currentscore;
-                        bestBlackScore = Math.min(bestBlackScore, currentscore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                }
-            }
-        if (!moves.isEmpty())
-            for (var m : moves) {
-                board.executeMove(m);
-                currentscore = search(depth, bestWhiteScore, bestBlackScore);
-                board.reverseMove(m);
-                if (board.getWhosTurn() == ChessColor.WHITE) {
-                    if (currentscore > bestScore || currentscore == bestScore && Math.random() < 0.5) {
-                        bestScore = currentscore;
-                        bestWhiteScore = Math.max(bestWhiteScore, currentscore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                } else {
-                    if (currentscore < bestScore || currentscore == bestScore && Math.random() < 0.5) {
-                        bestScore = currentscore;
-                        bestBlackScore = Math.min(bestBlackScore, currentscore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                }
-            }
-        else {
-            System.err.println("No moves found");
-            board.changeWhosTurn();
-            bestScore = evaluator.getScore();
-        }
-        */
-
         return bestScore;
     }
 }
