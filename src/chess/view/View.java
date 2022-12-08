@@ -55,7 +55,7 @@ public class View {
     }
 
     /**
-     * Creates and returns a JFrame
+     * Creates and returns a JFrame.
      *
      * @return created JFrame
      */
