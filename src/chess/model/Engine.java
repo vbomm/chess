@@ -70,60 +70,6 @@ public class Engine {
                 }
         }
 
-        /*
-        if (!captures.isEmpty())
-            for (var c : captures) {
-                board.executeMove(c);
-                currentScore = search(depth, bestWhiteScore, bestBlackScore);
-                board.reverseMove(c);
-                if (board.getWhosTurn() == ChessColor.WHITE) {
-                    if (currentScore > bestScore || currentScore == bestScore && Math.random() < 0.5) {
-                        bestMove = c;
-                        bestScore = currentScore;
-                        bestWhiteScore = Math.max(bestWhiteScore, currentScore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                } else {
-                    if (currentScore < bestScore || currentScore == bestScore && Math.random() < 0.5) {
-                        bestMove = c;
-                        bestScore = currentScore;
-                        bestBlackScore = Math.min(bestBlackScore, currentScore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                }
-            }
-        */
-
-        /*
-        if (!moves.isEmpty())
-            for (var m : moves) {
-                board.executeMove(m);
-                currentScore = search(depth, bestWhiteScore, bestBlackScore);
-                board.reverseMove(m);
-                if (board.getWhosTurn() == ChessColor.WHITE) {
-                    if (currentScore > bestScore || currentScore == bestScore && Math.random() < 0.5) {
-                        bestMove = m;
-                        bestScore = currentScore;
-                        bestWhiteScore = Math.max(bestWhiteScore, currentScore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                } else {
-                    if (currentScore < bestScore || currentScore == bestScore && Math.random() < 0.5) {
-                        bestMove = m;
-                        bestScore = currentScore;
-                        bestBlackScore = Math.min(bestBlackScore, currentScore);
-                        //if (bestBlackScore <= bestWhiteScore)
-                        //    break;
-                    }
-                }
-            }
-        else
-            System.err.println("No moves found");
-        */
-
         if (bestMove != null)
             board.executeMove(bestMove);
         else {
