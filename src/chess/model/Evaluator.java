@@ -61,12 +61,22 @@ public class Evaluator {
     private void initPieceValues() {
         // https://chess.stackexchange.com/questions/5941/what-relative-point-values-of-pieces-do-engines-use
         pieceValues = new HashMap<>();
+
+        pieceValues.put(PieceType.PAWN, 100);
+        pieceValues.put(PieceType.KNIGHT, 325);
+        pieceValues.put(PieceType.BISHOP, 325);
+        pieceValues.put(PieceType.ROOK, 500);
+        pieceValues.put(PieceType.QUEEN, 1050);
+        pieceValues.put(PieceType.KING, 40000);
+
+        /*
         pieceValues.put(PieceType.PAWN, 126);
         pieceValues.put(PieceType.KNIGHT, 781);
         pieceValues.put(PieceType.BISHOP, 825);
         pieceValues.put(PieceType.ROOK, 1276);
         pieceValues.put(PieceType.QUEEN, 2538);
         pieceValues.put(PieceType.KING, 15000);
+        */
     }
 
     /**
