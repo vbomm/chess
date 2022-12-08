@@ -40,6 +40,37 @@ public class Engine {
         int currentScore;
         Move bestMove = null;
 
+        ArrayList<Move> current;
+        for (int i = 0; i < 2; i++) {
+            if (i == 0) current = captures;
+            else current = moves;
+
+            if (!current.isEmpty())
+                for (var c : current) {
+                    board.executeMove(c);
+                    currentScore = search(depth, bestWhiteScore, bestBlackScore);
+                    board.reverseMove(c);
+                    if (board.getWhosTurn() == ChessColor.WHITE) {
+                        if (currentScore > bestScore || currentScore == bestScore && Math.random() < 0.5) {
+                            bestMove = c;
+                            bestScore = currentScore;
+                            bestWhiteScore = Math.max(bestWhiteScore, currentScore);
+                            //if (bestBlackScore <= bestWhiteScore)
+                            //    break;
+                        }
+                    } else {
+                        if (currentScore < bestScore || currentScore == bestScore && Math.random() < 0.5) {
+                            bestMove = c;
+                            bestScore = currentScore;
+                            bestBlackScore = Math.min(bestBlackScore, currentScore);
+                            //if (bestBlackScore <= bestWhiteScore)
+                            //    break;
+                        }
+                    }
+                }
+        }
+
+        /*
         if (!captures.isEmpty())
             for (var c : captures) {
                 board.executeMove(c);
@@ -63,7 +94,9 @@ public class Engine {
                     }
                 }
             }
+        */
 
+        /*
         if (!moves.isEmpty())
             for (var m : moves) {
                 board.executeMove(m);
@@ -89,6 +122,7 @@ public class Engine {
             }
         else
             System.err.println("No moves found");
+        */
 
         if (bestMove != null)
             board.executeMove(bestMove);
