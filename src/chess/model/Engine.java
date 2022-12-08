@@ -40,13 +40,13 @@ public class Engine {
         int currentScore;
         Move bestMove = null;
 
-        ArrayList<Move> current;
+        ArrayList<Move> currentList;
         for (int i = 0; i < 2; i++) {
-            if (i == 0) current = captures;
-            else current = moves;
+            if (i == 0) currentList = captures;
+            else currentList = moves;
 
-            if (!current.isEmpty())
-                for (var c : current) {
+            if (!currentList.isEmpty())
+                for (var c : currentList) {
                     board.executeMove(c);
                     currentScore = search(depth, bestWhiteScore, bestBlackScore);
                     board.reverseMove(c);
@@ -97,13 +97,13 @@ public class Engine {
         int bestScore = board.getWhosTurn() == ChessColor.WHITE ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int currentscore;
 
-        ArrayList<Move> current;
+        ArrayList<Move> currentList;
         for (int i = 0; i < 2; i++) {
-            if (i == 0) current = captures;
-            else current = moves;
+            if (i == 0) currentList = captures;
+            else currentList = moves;
 
-            if (!current.isEmpty())
-                for (var c : current) {
+            if (!currentList.isEmpty())
+                for (var c : currentList) {
                     board.executeMove(c);
                     currentscore = search(depth, bestWhiteScore, bestBlackScore);
                     board.reverseMove(c);
