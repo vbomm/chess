@@ -151,6 +151,35 @@ public class Engine {
         int bestScore = board.getWhosTurn() == ChessColor.WHITE ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int currentscore;
 
+        ArrayList<Move> current;
+        for (int i = 0; i < 2; i++) {
+            if (i == 0) current = captures;
+            else current = moves;
+
+            if (!current.isEmpty())
+                for (var c : current) {
+                    board.executeMove(c);
+                    currentscore = search(depth, bestWhiteScore, bestBlackScore);
+                    board.reverseMove(c);
+                    if (board.getWhosTurn() == ChessColor.WHITE) {
+                        if (currentscore > bestScore || currentscore == bestScore && Math.random() < 0.5) {
+                            bestScore = currentscore;
+                            bestWhiteScore = Math.max(bestWhiteScore, currentscore);
+                            //if (bestBlackScore <= bestWhiteScore)
+                            //    break;
+                        }
+                    } else {
+                        if (currentscore < bestScore || currentscore == bestScore && Math.random() < 0.5) {
+                            bestScore = currentscore;
+                            bestBlackScore = Math.min(bestBlackScore, currentscore);
+                            //if (bestBlackScore <= bestWhiteScore)
+                            //    break;
+                        }
+                    }
+                }
+        }
+
+        /*
         if (!captures.isEmpty())
             for (var c : captures) {
                 board.executeMove(c);
@@ -198,6 +227,7 @@ public class Engine {
             board.changeWhosTurn();
             bestScore = evaluator.getScore();
         }
+        */
 
         return bestScore;
     }
