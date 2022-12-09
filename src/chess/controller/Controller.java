@@ -74,6 +74,9 @@ public class Controller {
         });
     }
 
+    /**
+     * Creates a HashMap to look up icons depending on piece type and color.
+     */
     private void generateIconHashes() {
         pieceIcons = new HashMap<>();
 
