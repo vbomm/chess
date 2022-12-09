@@ -199,8 +199,6 @@ public class Controller {
      * @return      icon of the piece
      */
     private ImageIcon getPieceIcon(ChessColor color, PieceType type) {
-
-
         return pieceIcons.get(hashColorType(color, type));
     }
 
