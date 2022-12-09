@@ -221,7 +221,7 @@ public class Controller {
             case ROOK: hash = 3; break;
             case QUEEN: hash = 4; break;
             case KING: hash = 5; break;
-            default: System.err.println("Unknown piece type");
+            default: view.displayMessage("Unknown piece type detected!", "Error");
         }
 
         if (color == ChessColor.BLACK)
