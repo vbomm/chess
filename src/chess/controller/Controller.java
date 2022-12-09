@@ -26,6 +26,7 @@ public class Controller {
     final private Color lastMoved = new Color(200, 150, 29);
 
     private BufferedImage whitePawn;
+    private HashMap<Integer, ImageIcon> pieceIcons;
     private ImageIcon whitePawnRescaled;
     private BufferedImage whiteRook;
     private ImageIcon whiteRookRescaled;
@@ -63,12 +64,32 @@ public class Controller {
 
         loadPieceImages();
 
+        generateIconHashes();
+
         setAllBackgrounds();
         setAllIcons();
 
         SwingUtilities.invokeLater(() -> {
             view.show();
         });
+    }
+
+    private void generateIconHashes() {
+        pieceIcons = new HashMap<>();
+
+        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.PAWN), whitePawnRescaled);
+        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.KNIGHT), whiteKnightRescaled);
+        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.BISHOP), whiteBishopRescaled);
+        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.ROOK), whiteRookRescaled);
+        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.QUEEN), whiteQueenRescaled);
+        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.KING), whiteKingRescaled);
+
+        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.PAWN), blackPawnRescaled);
+        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.KNIGHT), blackKnightRescaled);
+        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.BISHOP), blackBishopRescaled);
+        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.ROOK), blackRookRescaled);
+        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.QUEEN), blackQueenRescaled);
+        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.KING), blackKingRescaled);
     }
 
     /**
@@ -175,20 +196,7 @@ public class Controller {
      * @return      icon of the piece
      */
     private ImageIcon getPieceIcon(ChessColor color, PieceType type) {
-        HashMap<Integer, ImageIcon> pieceIcons = new HashMap<>();
-        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.PAWN), whitePawnRescaled);
-        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.KNIGHT), whiteKnightRescaled);
-        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.BISHOP), whiteBishopRescaled);
-        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.ROOK), whiteRookRescaled);
-        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.QUEEN), whiteQueenRescaled);
-        pieceIcons.put(hashColorType(ChessColor.WHITE, PieceType.KING), whiteKingRescaled);
 
-        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.PAWN), blackPawnRescaled);
-        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.KNIGHT), blackKnightRescaled);
-        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.BISHOP), blackBishopRescaled);
-        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.ROOK), blackRookRescaled);
-        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.QUEEN), blackQueenRescaled);
-        pieceIcons.put(hashColorType(ChessColor.BLACK, PieceType.KING), blackKingRescaled);
 
         return pieceIcons.get(hashColorType(color, type));
     }
