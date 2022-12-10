@@ -59,12 +59,10 @@ public class Controller {
     public Controller() {
         selectedPiece = new SelectedPiece();
 
-        model = new Model();
-        view = new View(this);
-
         loadPieceImages();
 
-        generateIconHashes();
+        model = new Model();
+        view = new View(this);
 
         setAllBackgrounds();
         setAllIcons();
@@ -199,6 +197,7 @@ public class Controller {
      * @return      icon of the piece
      */
     private ImageIcon getPieceIcon(ChessColor color, PieceType type) {
+        generateIconHashes();
         return pieceIcons.get(hashColorType(color, type));
     }
 
@@ -263,6 +262,7 @@ public class Controller {
             int x = i % 8;
             int y = i / 8;
             Piece currentPiece = model.getTile(x, y);
+            ;
             if (currentPiece == null)
                 view.setIcon(i, null);
             else

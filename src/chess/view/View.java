@@ -72,7 +72,6 @@ public class View {
             public void componentResized(ComponentEvent componentEvent) {
                 int newWidth = labels[0].getWidth();
                 int newHeight = labels[0].getHeight();
-
                 controller.rescaleIcons(newWidth, newHeight);
             }
         });
