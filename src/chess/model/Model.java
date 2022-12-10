@@ -16,7 +16,8 @@ public class Model {
     private int[] row;
     private int[][] advancement;
     private String[] tileNames;
-    private HashMap<String, Integer> tileNameHash;
+    private HashMap<String, Integer> indexNameHash;
+    private HashMap<Integer, String> nameIndexHash;
     private Board board;
     private MoveGenerator moveGenerator;
     private Evaluator evaluator;
@@ -37,9 +38,10 @@ private HashMap<ChessColor, Integer> colorHash;
         initColumn();
         initRow();
         initAdvancement();
-        initCellNames();
+        generateTileNames();
+        generateNameTiles();
 
-        moveHistory = new MoveHistory();
+        moveHistory = new MoveHistory(this);
         board = new Board(this, moveHistory);
         moveGenerator = new MoveGenerator(board, moveHistory);
         evaluator = new Evaluator(board);
@@ -75,6 +77,8 @@ private HashMap<ChessColor, Integer> colorHash;
             moveGenerator.findMovesAndCaptures();
             moveGenerator.removeInvalidMoves();
         }
+
+        System.out.println(moveHistory.getMoveHistory());
     }
 
     /**
@@ -202,10 +206,10 @@ private HashMap<ChessColor, Integer> colorHash;
      * Generates the HashMap to convert tile names to tile indexes.
      * For example, "A8" returns 0.
      */
-    private void initCellNames() {
+    private void generateTileNames() {
         String coloumnNames = "ABCDEFGH";
         tileNames = new String[64];
-        tileNameHash = new HashMap<>();
+        indexNameHash = new HashMap<>();
 
 
         for (int y = 0; y < 8; y++)
@@ -213,7 +217,16 @@ private HashMap<ChessColor, Integer> colorHash;
                 tileNames[x + y * 8] = coloumnNames.charAt(x) + "" + (8 - y);
 
         for (int i = 0; i < 64; i++)
-                tileNameHash.put(tileNames[i], i);
+                indexNameHash.put(tileNames[i], i);
+    }
+
+    private void generateNameTiles() {
+        String coloumnNames = "ABCDEFGH";
+        nameIndexHash = new HashMap<>();
+
+        for (int y = 0; y < 8; y++)
+            for (int x = 0; x < 8; x++)
+                nameIndexHash.put(x + y * 8, coloumnNames.charAt(x) + "" + (8 - y));
     }
 
     /**
@@ -223,7 +236,7 @@ private HashMap<ChessColor, Integer> colorHash;
      * @return         the index
      */
     public int tileNameToIndex(String tileName) {
-        return tileNameHash.get(tileName);
+        return indexNameHash.get(tileName);
     }
 
     /**
@@ -234,28 +247,28 @@ private HashMap<ChessColor, Integer> colorHash;
             board.clear();
 
         for (int i = 0; i < 8; i++)
-            board.addPiece(PieceType.PAWN, ChessColor.WHITE, tileNameHash.get("A2") + i);
+            board.addPiece(PieceType.PAWN, ChessColor.WHITE, indexNameHash.get("A2") + i);
 
-        board.addPiece(PieceType.ROOK, ChessColor.WHITE, tileNameHash.get("A1"));
-        board.addPiece(PieceType.KNIGHT, ChessColor.WHITE, tileNameHash.get("B1"));
-        board.addPiece(PieceType.BISHOP, ChessColor.WHITE, tileNameHash.get("C1"));
-        board.addPiece(PieceType.QUEEN, ChessColor.WHITE, tileNameHash.get("D1"));
-        board.addPiece(PieceType.KING, ChessColor.WHITE, tileNameHash.get("E1"));
-        board.addPiece(PieceType.BISHOP, ChessColor.WHITE, tileNameHash.get("F1"));
-        board.addPiece(PieceType.KNIGHT, ChessColor.WHITE, tileNameHash.get("G1"));
-        board.addPiece(PieceType.ROOK, ChessColor.WHITE, tileNameHash.get("H1"));
+        board.addPiece(PieceType.ROOK, ChessColor.WHITE, indexNameHash.get("A1"));
+        board.addPiece(PieceType.KNIGHT, ChessColor.WHITE, indexNameHash.get("B1"));
+        board.addPiece(PieceType.BISHOP, ChessColor.WHITE, indexNameHash.get("C1"));
+        board.addPiece(PieceType.QUEEN, ChessColor.WHITE, indexNameHash.get("D1"));
+        board.addPiece(PieceType.KING, ChessColor.WHITE, indexNameHash.get("E1"));
+        board.addPiece(PieceType.BISHOP, ChessColor.WHITE, indexNameHash.get("F1"));
+        board.addPiece(PieceType.KNIGHT, ChessColor.WHITE, indexNameHash.get("G1"));
+        board.addPiece(PieceType.ROOK, ChessColor.WHITE, indexNameHash.get("H1"));
 
         for (int i = 0; i < 8; i++)
-            board.addPiece(PieceType.PAWN, ChessColor.BLACK, tileNameHash.get("A7") + i);
+            board.addPiece(PieceType.PAWN, ChessColor.BLACK, indexNameHash.get("A7") + i);
 
-        board.addPiece(PieceType.ROOK, ChessColor.BLACK, tileNameHash.get("A8"));
-        board.addPiece(PieceType.KNIGHT, ChessColor.BLACK, tileNameHash.get("B8"));
-        board.addPiece(PieceType.BISHOP, ChessColor.BLACK, tileNameHash.get("C8"));
-        board.addPiece(PieceType.QUEEN, ChessColor.BLACK, tileNameHash.get("D8"));
-        board.addPiece(PieceType.KING, ChessColor.BLACK, tileNameHash.get("E8"));
-        board.addPiece(PieceType.BISHOP, ChessColor.BLACK, tileNameHash.get("F8"));
-        board.addPiece(PieceType.KNIGHT, ChessColor.BLACK, tileNameHash.get("G8"));
-        board.addPiece(PieceType.ROOK, ChessColor.BLACK, tileNameHash.get("H8"));
+        board.addPiece(PieceType.ROOK, ChessColor.BLACK, indexNameHash.get("A8"));
+        board.addPiece(PieceType.KNIGHT, ChessColor.BLACK, indexNameHash.get("B8"));
+        board.addPiece(PieceType.BISHOP, ChessColor.BLACK, indexNameHash.get("C8"));
+        board.addPiece(PieceType.QUEEN, ChessColor.BLACK, indexNameHash.get("D8"));
+        board.addPiece(PieceType.KING, ChessColor.BLACK, indexNameHash.get("E8"));
+        board.addPiece(PieceType.BISHOP, ChessColor.BLACK, indexNameHash.get("F8"));
+        board.addPiece(PieceType.KNIGHT, ChessColor.BLACK, indexNameHash.get("G8"));
+        board.addPiece(PieceType.ROOK, ChessColor.BLACK, indexNameHash.get("H8"));
     }
 
     /**

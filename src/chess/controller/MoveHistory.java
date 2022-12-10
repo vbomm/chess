@@ -1,13 +1,15 @@
 package chess.controller;
 
+import chess.model.Model;
 import chess.model.Move;
 
 import java.util.ArrayList;
 
 public class MoveHistory {
+    private Model model;
     private ArrayList<Move> list;
 
-    public MoveHistory() {
+    public MoveHistory(Model model) {
         list = new ArrayList<>();
     }
 
@@ -18,6 +20,12 @@ public class MoveHistory {
      */
     public ArrayList<Move> getMoveHistory() {
         return list;
+    }
+
+    public ArrayList<String> getMoveHistoryNotation() {
+        ArrayList<String> historyNotation = new ArrayList<>();
+
+        return historyNotation;
     }
 
     /**
