@@ -10,6 +10,7 @@ public class MoveHistory {
     private ArrayList<Move> list;
 
     public MoveHistory(Model model) {
+        this.model = model;
         list = new ArrayList<>();
     }
 
@@ -24,6 +25,9 @@ public class MoveHistory {
 
     public ArrayList<String> getMoveHistoryNotation() {
         ArrayList<String> historyNotation = new ArrayList<>();
+
+        for (var move : list)
+            historyNotation.add(model.indexToTileName(move.getStart()) + "->" + model.indexToTileName(move.getDestination()));
 
         return historyNotation;
     }

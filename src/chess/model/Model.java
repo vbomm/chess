@@ -78,7 +78,7 @@ private HashMap<ChessColor, Integer> colorHash;
             moveGenerator.removeInvalidMoves();
         }
 
-        System.out.println(moveHistory.getMoveHistory());
+        System.out.println(moveHistory.getMoveHistoryNotation());
     }
 
     /**
@@ -237,6 +237,10 @@ private HashMap<ChessColor, Integer> colorHash;
      */
     public int tileNameToIndex(String tileName) {
         return indexNameHash.get(tileName);
+    }
+
+    public String indexToTileName(int index) {
+        return nameIndexHash.get(index);
     }
 
     /**
