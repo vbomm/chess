@@ -23,6 +23,11 @@ public class MoveHistory {
         return list;
     }
 
+    /**
+     * Generates and returns a move history in the form of notations.
+     *
+     * @return notation move history
+     */
     public ArrayList<String> getMoveHistoryNotation() {
         ArrayList<String> historyNotation = new ArrayList<>();
 
