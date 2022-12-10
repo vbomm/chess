@@ -236,13 +236,19 @@ private HashMap<ChessColor, Integer> colorHash;
     /**
      * Returns the index of a tile name.
      *
-     * @param tileName the tile name
-     * @return         the index
+     * @param tileName the name of the tile
+     * @return         the index of the tile
      */
     public int tileNameToIndex(String tileName) {
         return indexNameHash.get(tileName);
     }
 
+    /**
+     * Returns toe tile name of the index.
+     *
+     * @param index the index of the tile
+     * @return      the name of the tile
+     */
     public String indexToTileName(int index) {
         return nameIndexHash.get(index);
     }
