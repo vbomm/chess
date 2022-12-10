@@ -220,6 +220,10 @@ private HashMap<ChessColor, Integer> colorHash;
                 indexNameHash.put(tileNames[i], i);
     }
 
+    /**
+     * Generates the HashMap to convert tile indexes to tile names.
+     * For example, 0 returns "A8".
+     */
     private void generateNameTiles() {
         String coloumnNames = "ABCDEFGH";
         nameIndexHash = new HashMap<>();
