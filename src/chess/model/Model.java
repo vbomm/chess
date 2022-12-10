@@ -1,6 +1,7 @@
 package chess.model;
 
 import chess.controller.ChessColor;
+import chess.controller.MoveHistory;
 import chess.controller.PieceType;
 
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class Model {
     private Board board;
     private MoveGenerator moveGenerator;
     private Evaluator evaluator;
+    private MoveHistory moveHistory;
     private int depth;
     private Engine engine;
 
@@ -37,8 +39,9 @@ private HashMap<ChessColor, Integer> colorHash;
         initAdvancement();
         initCellNames();
 
-        board = new Board(this);
-        moveGenerator = new MoveGenerator(board);
+        moveHistory = new MoveHistory();
+        board = new Board(this, moveHistory);
+        moveGenerator = new MoveGenerator(board, moveHistory);
         evaluator = new Evaluator(board);
         depth = 4;
         engine = new Engine(board, moveGenerator, evaluator, depth);

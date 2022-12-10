@@ -1,6 +1,7 @@
 package chess.model;
 
 import chess.controller.ChessColor;
+import chess.controller.MoveHistory;
 import chess.controller.PieceType;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Board {
     private boolean blackCanShortCastle;
     private ChessColor whosTurn;
     private int noPawnMoveOrCaptureCounter;
-    private ArrayList<Move> moveHistory;
+
     private HashMap<ChessColor, Integer> colorHash;
     private Piece[] kings;
 
@@ -30,9 +31,9 @@ public class Board {
      *
      * @param model
      */
-    public Board(Model model) {
+    public Board(Model model, MoveHistory moveHistory) {
         this.model = model;
-        moveExecutor = new MoveExecutor(this);
+        moveExecutor = new MoveExecutor(this, moveHistory);
         lookupTables = new LookupTables(this);
 
         tile = new Piece[64];
@@ -51,7 +52,6 @@ public class Board {
      * Sets the variables of the board.
      */
     private void initBoard() {
-        moveHistory = new ArrayList<>();
         whosTurn = ChessColor.WHITE;
         whiteCanLongCastle = true;
         whiteCanShortCastle = true;
@@ -286,15 +286,6 @@ public class Board {
     }
 
     /**
-     * Returns the move history.
-     *
-     * @return the move history
-     */
-    public ArrayList<Move> getMoveHistory() {
-        return moveHistory;
-    }
-
-    /**
      * Sets the variable used for the 50-move/75-move rule.
      *
      * @param value the new value of the counter
@@ -339,23 +330,5 @@ public class Board {
      */
     public void removeLastPiece(ChessColor color) {
         pieces.get(colorHash.get(color)).remove(pieces.get(colorHash.get(color)).size() - 1);
-    }
-
-    /**
-     * Adds move to history.
-     *
-     * @param move move to be added to history
-     */
-    public void addMoveToHistory(Move move) {
-        moveHistory.add(move);
-    }
-
-    /**
-     * Removes move from history.
-     *
-     * @param move move to be removed from history
-     */
-    public void removeMoveFromHistory(Move move) {
-        moveHistory.remove(move);
     }
 }

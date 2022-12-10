@@ -1,5 +1,6 @@
 package chess.model;
 
+import chess.controller.MoveHistory;
 import chess.controller.PieceType;
 
 /**
@@ -7,14 +8,16 @@ import chess.controller.PieceType;
  */
 public class MoveExecutor {
     private Board board;
+    private MoveHistory moveHistory;
 
     /**
      * Assigns board to the board the moves are executed on.
      *
      * @param board the board moves are executed on
      */
-    public MoveExecutor(Board board) {
+    public MoveExecutor(Board board, MoveHistory moveHistory) {
         this.board = board;
+        this.moveHistory = moveHistory;
     }
 
     /**
@@ -77,7 +80,7 @@ public class MoveExecutor {
         }
 
         move.getPiece().increaseMoveCounter();
-        board.addMoveToHistory(move);
+        moveHistory.addMoveToHistory(move);
 
         board.changeWhosTurn();
     }
@@ -142,7 +145,7 @@ public class MoveExecutor {
             move.getTarget().activate();
 
         move.getPiece().decreaseMoveCounter();
-        board.removeMoveFromHistory(move);
+        moveHistory.removeMoveFromHistory(move);
 
         board.changeWhosTurn();
     }

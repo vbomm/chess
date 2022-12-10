@@ -1,6 +1,7 @@
 package chess.model;
 
 import chess.controller.ChessColor;
+import chess.controller.MoveHistory;
 import chess.controller.PieceType;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class MoveGenerator {
     private ArrayList<Move> moves;
     private ArrayList<Move> captures;
     private Board board;
+    private MoveHistory moveHistory;
     private boolean[] threats;
     private int[] castleKingStart;
     private int[] longCastleRookStart;
@@ -35,8 +37,9 @@ public class MoveGenerator {
      *
      * @param board the Board object
      */
-    public MoveGenerator(Board board) {
+    public MoveGenerator(Board board, MoveHistory moveHistory) {
         this.board = board;
+        this.moveHistory = moveHistory;
         colorHash = new HashMap<>();
         colorHash.put(ChessColor.WHITE, 0);
         colorHash.put(ChessColor.BLACK, 1);
@@ -245,10 +248,10 @@ public class MoveGenerator {
      * Generates en passant moves.
      */
     private void findEnPassant() {
-        if (board.getMoveHistory() == null || board.getMoveHistory().size() == 0)
+        if (moveHistory.getMoveHistory() == null || moveHistory.getMoveHistory().size() == 0)
             return;
 
-        Move move = board.getMoveHistory().get(board.getMoveHistory().size() - 1);
+        Move move = moveHistory.getMoveHistory().get(moveHistory.getMoveHistory().size() - 1);
 
         if (move.getPiece().getType() == PieceType.PAWN && Math.abs(move.getStart() - move.getDestination()) == 16)
             if (whoCanEnPassant[move.getDestination()][0] != -1
