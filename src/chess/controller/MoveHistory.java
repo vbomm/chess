@@ -7,11 +7,16 @@ import java.util.ArrayList;
 
 public class MoveHistory {
     private Model model;
-    private ArrayList<Move> list;
+    private ArrayList<Move> moveHistory;
 
+    /**
+     * Sets model and initializes moveHistory.
+     *
+     * @param model
+     */
     public MoveHistory(Model model) {
         this.model = model;
-        list = new ArrayList<>();
+        moveHistory = new ArrayList<>();
     }
 
     /**
@@ -20,7 +25,7 @@ public class MoveHistory {
      * @return the move history
      */
     public ArrayList<Move> getMoveHistory() {
-        return list;
+        return moveHistory;
     }
 
     /**
@@ -31,7 +36,7 @@ public class MoveHistory {
     public ArrayList<String> getMoveHistoryNotation() {
         ArrayList<String> historyNotation = new ArrayList<>();
 
-        for (var move : list)
+        for (var move : moveHistory)
             historyNotation.add(model.indexToTileName(move.getStart()) + "->" + model.indexToTileName(move.getDestination()));
 
         return historyNotation;
@@ -43,7 +48,7 @@ public class MoveHistory {
      * @param move move to be added to history
      */
     public void addMoveToHistory(Move move) {
-        list.add(move);
+        moveHistory.add(move);
     }
 
     /**
@@ -52,6 +57,6 @@ public class MoveHistory {
      * @param move move to be removed from history
      */
     public void removeMoveFromHistory(Move move) {
-        list.remove(move);
+        moveHistory.remove(move);
     }
 }
