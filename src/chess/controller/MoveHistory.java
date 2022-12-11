@@ -37,7 +37,10 @@ public class MoveHistory {
         ArrayList<String> historyNotation = new ArrayList<>();
 
         for (var move : moveHistory)
-            historyNotation.add(model.indexToTileName(move.getStart()) + "->" + model.indexToTileName(move.getDestination()));
+            if (move.getTarget() == null)
+                historyNotation.add(model.indexToTileName(move.getStart()) + "->" + model.indexToTileName(move.getDestination()));
+            else
+                historyNotation.add(model.indexToTileName(move.getStart()) + "x" + model.indexToTileName(move.getDestination()));
 
         return historyNotation;
     }
