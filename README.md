@@ -27,7 +27,7 @@ find and fix bugs<br>
 - short castling sometimes not possible, even if it should, will look at this after first code cleanup
 
 refactor code<br>
-- extract move generation logic from board class
+- extract move generation logic from board class ✔
 - extract lookup table generation from piece classes, so a lookup table is generated only one time for each piece and not every time a piece is created ✔
 
 
