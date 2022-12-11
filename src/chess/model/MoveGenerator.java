@@ -219,6 +219,12 @@ public class MoveGenerator {
             moves.add(new Move(castleKingStart[color], shortCastleKingDestination[color], board.getTile(castleKingStart[color]), null, board.getNoPawnMoveOrCaptureCounter()));
     }
 
+    /**
+     * Checks if king fulfills every condition for castling.
+     *
+     * @param color the color to move
+     * @return      true if conditions to castle are fulfilled
+     */
     private boolean castleKingStart(int color) {
         return board.getTile(castleKingStart[color]) != null && board.getTile(castleKingStart[color]).neverMoved() && !threats[castleKingStart[color]]
                 && board.getTile(castleKingStart[color]).getType() == PieceType.KING && board.getColor(castleKingStart[color]) == board.getWhosTurn();
