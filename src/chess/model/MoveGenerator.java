@@ -224,7 +224,14 @@ public class MoveGenerator {
                 && board.getTile(castleKingStart[color]).getType() == PieceType.KING && board.getColor(castleKingStart[color]) == board.getWhosTurn();
     }
 
+    /**
+     * Checks if rook fulfills every condition for short castling.
+     *
+     * @param color the color to move
+     * @return      true if castle conditions are fulfilled
+     */
     private boolean longCastleRookStart(int color) {
+        // eventually remove check for type and color, since if the piece never moved on this position it has to be to correct color and type
         return (board.getTile(longCastleRookStart[color]) != null && board.getTile(longCastleRookStart[color]).neverMoved()
                 && board.getTile(longCastleRookStart[color]).getType() == PieceType.ROOK && board.getColor(longCastleRookStart[color]) == board.getWhosTurn());
     }
@@ -240,7 +247,14 @@ public class MoveGenerator {
                 && board.isTileEmpty(longCastleEmptyTiles[color][0]) && board.isTileEmpty(longCastleEmptyTiles[color][1]) && board.isTileEmpty(longCastleEmptyTiles[color][2]);
     }
 
+    /**
+     * Checks if rook fulfills every condition for short castling.
+     *
+     * @param color the color to move
+     * @return      true if castle conditions are fulfilled
+     */
     private boolean shortCastleRookStart(int color) {
+        // eventually remove check for type and color, since if the piece never moved on this position it has to be to correct color and type
         return (board.getTile(shortCastleRookStart[color]) != null && board.getTile(shortCastleRookStart[color]).neverMoved()
                 && board.getTile(shortCastleRookStart[color]).getType() == PieceType.ROOK && board.getColor(shortCastleRookStart[color]) == board.getWhosTurn());
     }
