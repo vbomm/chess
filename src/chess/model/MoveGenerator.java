@@ -239,6 +239,12 @@ public class MoveGenerator {
                 && board.getTile(shortCastleRookStart[color]).getType() == PieceType.ROOK && board.getColor(shortCastleRookStart[color]) == board.getWhosTurn());
     }
 
+    /**
+     * Checks if tile needed to be empty for short castling are empty.
+     *
+     * @param color the color to move
+     * @return      true if tiles are empty
+     */
     private boolean shortCastleEmptyTiles(int color) {
         return !threats[shortCastleEmptyTiles[color][0]] && !threats[shortCastleEmptyTiles[color][1]]
                 && board.isTileEmpty(shortCastleEmptyTiles[color][0]) && board.isTileEmpty(shortCastleEmptyTiles[color][1]);
