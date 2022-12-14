@@ -99,7 +99,7 @@ public class Controller {
      * @param index the index of the tile
      */
     public void setSelectedPiece(int index) {
-        if (!model.isTileEmpty(index) && model.getColor(index % 8, index / 8) == model.getWhosTurn()) {
+        if (!model.isTileEmpty(index) && model.getColor(index) == model.getWhosTurn()) {
             selectedPiece.setPiece(model.getTile(index));
             view.setIcon(index, null);
 
@@ -134,7 +134,7 @@ public class Controller {
             if (model.hasPieceAccessToTile(selectedPiece.getX() + selectedPiece.getY() * 8, i))
                 view.setBackground(i, getTileColor(i));
 
-        view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX() + selectedPiece.getY() * 8).getType()));
+        view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX() + selectedPiece.getY() * 8), model.getTile(selectedPiece.getX() + selectedPiece.getY() * 8).getType()));
 
         if (model.movePiece(selectedPiece.getX() + selectedPiece.getY() * 8, index)) {
             model.nextHalfStep();
@@ -263,7 +263,7 @@ public class Controller {
             if (currentPiece == null)
                 view.setIcon(i, null);
             else
-                view.setIcon(i, getPieceIcon(model.getColor(i % 8, i / 8), model.getTile(i).getType()));
+                view.setIcon(i, getPieceIcon(model.getColor(i), model.getTile(i).getType()));
         }
     }
 
@@ -290,7 +290,7 @@ public class Controller {
      * @return the icon for a piece
      */
     public Image getSelectedPieceIcon() {
-        return getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX() + selectedPiece.getY() * 8).getType()).getImage();
+        return getPieceIcon(model.getColor(selectedPiece.getX() + selectedPiece.getY() * 8), model.getTile(selectedPiece.getX() + selectedPiece.getY() * 8).getType()).getImage();
     }
 
     /**

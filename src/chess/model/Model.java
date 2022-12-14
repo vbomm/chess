@@ -310,14 +310,13 @@ private HashMap<ChessColor, Integer> colorHash;
     }
 
     /**
-     * Returns the color of the piece on a tile. EMPTY if empty.
+     * Returns the color of the piece at index. EMPTY if empty.
      *
-     * @param x the x-coordinate
-     * @param y the y-coordinate
-     * @return  the color of the piece, if tile empty returns EMPTY
+     * @param index the index of the tile
+     * @return      the color of the piece, if tile empty returns EMPTY
      */
-    public ChessColor getColor(int x, int y) {
-        return board.getColor(coordinatesToIndex(x, y));
+    public ChessColor getColor(int index) {
+        return board.getColor(index);
     }
 
     /**
