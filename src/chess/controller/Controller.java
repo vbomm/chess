@@ -161,7 +161,6 @@ public class Controller {
      * @return      the highlighted color of the tile
      */
     private Color getHighlightedTileColor(int index) {
-        System.out.println(index);
         return (index / 8 + index) % 2 == 0 ? whiteTileHighlighted : blackTileHighlighted;
     }
 

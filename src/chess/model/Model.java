@@ -77,8 +77,6 @@ private HashMap<ChessColor, Integer> colorHash;
             moveGenerator.findMovesAndCaptures();
             moveGenerator.removeInvalidMoves();
         }
-
-        System.out.println(moveHistory.getMoveHistoryNotation());
     }
 
     /**
