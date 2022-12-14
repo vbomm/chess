@@ -126,8 +126,8 @@ public class Controller {
     /**
      * Sets the coordinates of the selected piece.
      *
-     * @param x x-coordinate
-     * @param y y-coordinate
+     * @param x the x-coordinate of the selected piece
+     * @param y the y-coordinate of the selected piece
      */
     public void setSelectedPieceCoordinates(int x, int y) {
         selectedPiece.setSelectedPieceDragXY(x, y);
@@ -137,10 +137,9 @@ public class Controller {
      * If selectedPiece is not null, set highlighted board tiles back to their normal color, set the icon for the tile of
      * the selected piece, call for the next half step and set selectedPiece to null.
      *
-     * @param x x-coordinate
-     * @param y y-coordinate
+     * @param index the index of the tile
      */
-    public void deselectPiece(int x, int y) {
+    public void deselectPiece(int index) {
         if (selectedPiece.getPiece() == null)
             return;
 
@@ -150,7 +149,7 @@ public class Controller {
 
         view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX(), selectedPiece.getY()).getType()));
 
-        if (model.movePiece(selectedPiece.getX(), selectedPiece.getY(), x, y)) {
+        if (model.movePiece(selectedPiece.getX(), selectedPiece.getY(), index % 8, index/ 8)) {
             model.nextHalfStep();
             setAllIcons();
         }

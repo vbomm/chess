@@ -195,7 +195,7 @@ public class View {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                controller.deselectPiece(e.getX() / labelsOverlay[0].getWidth(), e.getY() / labelsOverlay[0].getHeight());
+                controller.deselectPiece(e.getX() / labelsOverlay[0].getWidth() +  e.getY() / labelsOverlay[0].getHeight() * 8);
 
                 abp.repaint();
             }
