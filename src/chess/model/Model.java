@@ -84,14 +84,12 @@ private HashMap<ChessColor, Integer> colorHash;
     /**
      * If a piece at the given coordinates has access to the destination coordinates, returns true, otherwise false.
      *
-     * @param startX       x-coordinate of the start
-     * @param startY       y-coordinate of the start
-     * @param destinationX x-coordinate of the destination
-     * @param destinationY y-coordinate of the destination
-     * @return             yes if start can move to destination, false if not
+     * @param startIndex       x-coordinate of the start
+     * @param destinationIndex x-coordinate of the destination
+     * @return                 yes if start can move to destination, false if not
      */
-    public boolean hasPieceAccessToTile(int startX, int startY, int destinationX, int destinationY) {
-        return findAndGetMove(startX, startY, destinationX, destinationY) != null;
+    public boolean hasPieceAccessToTile(int startIndex, int destinationIndex) {
+        return findAndGetMove(startIndex % 8, startIndex / 8, destinationIndex % 8, destinationIndex / 8) != null;
     }
 
     /**

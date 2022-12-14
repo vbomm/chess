@@ -99,13 +99,12 @@ public class Controller {
      * @param index the index of the tile
      */
     public void setSelectedPiece(int index) {
-        System.out.println(index);
         if (!model.isTileEmpty(index % 8, index / 8) && model.getColor(index % 8, index / 8) == model.getWhosTurn()) {
             selectedPiece.setPiece(model.getTile(index % 8, index / 8));
             view.setIcon(index, null);
 
             for (int i = 0; i < 64; i++)
-                if (model.hasPieceAccessToTile(selectedPiece.getX(), selectedPiece.getY(), i % 8, i / 8))
+                if (model.hasPieceAccessToTile(selectedPiece.getX() + selectedPiece.getY() * 8, i))
                     view.setBackground(i, getHighlightedTileColor(i));
         } else
             selectedPiece.setPiece(null);
@@ -132,7 +131,7 @@ public class Controller {
             return;
 
         for (int i = 0; i < 64; i++)
-            if (model.hasPieceAccessToTile(selectedPiece.getX(), selectedPiece.getY(), i % 8, i / 8))
+            if (model.hasPieceAccessToTile(selectedPiece.getX() + selectedPiece.getY() * 8, i))
                 view.setBackground(i, getTileColor(i));
 
         view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX(), selectedPiece.getY()).getType()));
@@ -162,6 +161,7 @@ public class Controller {
      * @return      the highlighted color of the tile
      */
     private Color getHighlightedTileColor(int index) {
+        System.out.println(index);
         return (index / 8 + index) % 2 == 0 ? whiteTileHighlighted : blackTileHighlighted;
     }
 
