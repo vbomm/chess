@@ -227,21 +227,21 @@ public class View {
     /**
      * Sets the background of a tile.
      *
-     * @param i     the index of the tile
+     * @param index the index of the tile
      * @param color the new color of the tile
      */
-    public void setBackground(int i, Color color) {
-        labels[i].setBackground(color);
+    public void setBackground(int index, Color color) {
+        labels[index].setBackground(color);
     }
 
     /**
      * Sets the icon of a tile.
      *
-     * @param i    the index of the tile
-     * @param icon the new icon of the tile
+     * @param index the index of the tile
+     * @param icon  the new icon of the tile
      */
-    public void setIcon(int i, ImageIcon icon) {
-        labels[i].setIcon(icon);
+    public void setIcon(int index, ImageIcon icon) {
+        labels[index].setIcon(icon);
     }
 
     /**
