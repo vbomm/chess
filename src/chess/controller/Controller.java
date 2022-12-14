@@ -148,21 +148,21 @@ public class Controller {
     /**
      * Returns the color of the tile.
      *
-     * @param i index the tile
-     * @return  the color of the tile
+     * @param index tne index the tile
+     * @return      the color of the tile
      */
-    private Color getTileColor(int i) {
-        return (i / 8 + i) % 2 == 0 ? whiteTile : blackTile;
+    private Color getTileColor(int index) {
+        return (index / 8 + index) % 2 == 0 ? whiteTile : blackTile;
     }
 
     /**
      * Returns the highlighted color of the tile.
      *
-     * @param i the index of the tile
-     * @return  the highlighted color of the tile
+     * @param index the index of the tile
+     * @return      the highlighted color of the tile
      */
-    private Color getHighlightedTileColor(int i) {
-        return (i / 8 + i) % 2 == 0 ? whiteTileHighlighted : blackTileHighlighted;
+    private Color getHighlightedTileColor(int index) {
+        return (index / 8 + index) % 2 == 0 ? whiteTileHighlighted : blackTileHighlighted;
     }
 
     /**
