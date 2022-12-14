@@ -82,35 +82,30 @@ private HashMap<ChessColor, Integer> colorHash;
     }
 
     /**
-     * If a piece at the given coordinates has access to the destination coordinates, returns true, otherwise false.
+     * If a piece at the given index has access to the destination index, returns true, otherwise false.
      *
-     * @param startIndex       x-coordinate of the start
-     * @param destinationIndex x-coordinate of the destination
+     * @param startIndex       index of the start
+     * @param destinationIndex index of the destination
      * @return                 yes if start can move to destination, false if not
      */
     public boolean hasPieceAccessToTile(int startIndex, int destinationIndex) {
-        return findAndGetMove(startIndex % 8, startIndex / 8, destinationIndex % 8, destinationIndex / 8) != null;
+        return findAndGetMove(startIndex, destinationIndex) != null;
     }
 
     /**
-     * If a piece at the given coordinates has access to the destination coordinates, returns true, otherwise false.
+     * If a piece at the given index has access to the destination index, returns true, otherwise false.
      *
-     * @param startX       start index of the start
-     * @param startY       y-coordinate of the start
-     * @param destinationX x-coordinate of the destination
-     * @param destinationY y-coordinate of the destination
-     * @return             yes if start can move to destination, false if not
+     * @param startIndex       index of the start
+     * @param destinationIndex index of the destination
+     * @return                 yes if start can move to destination, false if not
      */
-    public Move findAndGetMove(int startX, int startY, int destinationX, int destinationY) {
-        int start = coordinatesToIndex(startX, startY);
-        int destination = coordinatesToIndex(destinationX, destinationY);
-
+    public Move findAndGetMove(int startIndex, int destinationIndex) {
         for (var m : moveGenerator.getLastGeneratedMoves())
-            if (start == m.getStart() && destination == m.getDestination())
+            if (startIndex == m.getStart() && destinationIndex == m.getDestination())
                 return m;
 
         for (var m : moveGenerator.getLastGeneratedCaptures())
-            if (start == m.getStart() && destination == m.getDestination())
+            if (startIndex == m.getStart() && destinationIndex == m.getDestination())
                 return m;
 
         return null;
@@ -346,7 +341,7 @@ private HashMap<ChessColor, Integer> colorHash;
      * @return             true if move is possible, false if not
      */
     public boolean movePiece(int startX, int startY, int destinationX, int destinationY) {
-        Move m = findAndGetMove(startX, startY, destinationX, destinationY);
+        Move m = findAndGetMove(startX + startY * 8, destinationX + destinationY * 8);
         if (m == null)
             return false;
 
