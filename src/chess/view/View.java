@@ -143,7 +143,7 @@ public class View {
             for (int i = 0; i < 8; i++)
                 if (e.getY() < labels[i * 8].getY() + labels[i * 8].getHeight()) {
                     y = i;
-                    controller.setSelectedPiece(x, y);
+                    controller.setSelectedPiece(x + y * 8);
                     break;
                 }
     }

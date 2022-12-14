@@ -96,10 +96,21 @@ public class Controller {
     /**
      * Gets called to select a piece on the given coordinates. If there is none, selectedPiece gets set to null.
      *
-     * @param x x-coordinate
-     * @param y y-coordinate
+     * @param index the index of the tile
      */
-    public void setSelectedPiece(int x, int y) {
+    public void setSelectedPiece(int index) {
+        System.out.println(index);
+        if (!model.isTileEmpty(index % 8, index / 8) && model.getColor(index % 8, index / 8) == model.getWhosTurn()) {
+            selectedPiece.setPiece(model.getTile(index % 8, index / 8));
+            view.setIcon(index, null);
+
+            for (int i = 0; i < 64; i++)
+                if (model.hasPieceAccessToTile(selectedPiece.getX(), selectedPiece.getY(), i % 8, i / 8))
+                    view.setBackground(i, getHighlightedTileColor(i));
+        } else
+            selectedPiece.setPiece(null);
+
+        /*
         if (x != -1 && y != -1 && !model.isTileEmpty(x, y) && model.getColor(x, y) == model.getWhosTurn()) {
             selectedPiece.setPiece(model.getTile(x, y));
             view.setIcon(y * 8 + x, null);
@@ -109,6 +120,7 @@ public class Controller {
                     view.setBackground(i, getHighlightedTileColor(i));
         } else
             selectedPiece.setPiece(null);
+        */
     }
 
     /**
