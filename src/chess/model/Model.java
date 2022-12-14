@@ -334,14 +334,12 @@ private HashMap<ChessColor, Integer> colorHash;
     /**
      * If start can't move to destination, returns falls, otherwise moves the piece.
      *
-     * @param startX       the x-coordinate of the start tile
-     * @param startY       the y-coordinate of the start tile
-     * @param destinationX the x-coordinate of the destination tile
-     * @param destinationY the y-coordinate of the destination tile
-     * @return             true if move is possible, false if not
+     * @param startIndex       the index of the start tile
+     * @param destinationIndex the index of the destination tile
+     * @return                 true if move is possible, false if not
      */
-    public boolean movePiece(int startX, int startY, int destinationX, int destinationY) {
-        Move m = findAndGetMove(startX + startY * 8, destinationX + destinationY * 8);
+    public boolean movePiece(int startIndex, int destinationIndex) {
+        Move m = findAndGetMove(startIndex, destinationIndex);
         if (m == null)
             return false;
 

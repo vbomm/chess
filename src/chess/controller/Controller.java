@@ -136,7 +136,7 @@ public class Controller {
 
         view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX(), selectedPiece.getY()).getType()));
 
-        if (model.movePiece(selectedPiece.getX(), selectedPiece.getY(), index % 8, index/ 8)) {
+        if (model.movePiece(selectedPiece.getX() + selectedPiece.getY() * 8, index)) {
             model.nextHalfStep();
             setAllIcons();
         }
