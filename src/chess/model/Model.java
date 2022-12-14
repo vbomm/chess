@@ -292,12 +292,11 @@ private HashMap<ChessColor, Integer> colorHash;
     /**
      * Returns true if a tile is empty, false otherwise.
      *
-     * @param  x the x-coordinate
-     * @param  y the y-coordinate
-     * @return true if empty, false if not
+     * @param  index the index of the tile
+     * @return       true if empty, false if not
      */
-    public boolean isTileEmpty(int x, int y) {
-        return board.isTileEmpty(coordinatesToIndex(x, y));
+    public boolean isTileEmpty(int index) {
+        return board.isTileEmpty(index);
     }
 
     /**

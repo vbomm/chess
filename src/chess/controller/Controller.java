@@ -99,7 +99,7 @@ public class Controller {
      * @param index the index of the tile
      */
     public void setSelectedPiece(int index) {
-        if (!model.isTileEmpty(index % 8, index / 8) && model.getColor(index % 8, index / 8) == model.getWhosTurn()) {
+        if (!model.isTileEmpty(index) && model.getColor(index % 8, index / 8) == model.getWhosTurn()) {
             selectedPiece.setPiece(model.getTile(index % 8, index / 8));
             view.setIcon(index, null);
 
