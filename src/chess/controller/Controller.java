@@ -109,18 +109,6 @@ public class Controller {
                     view.setBackground(i, getHighlightedTileColor(i));
         } else
             selectedPiece.setPiece(null);
-
-        /*
-        if (x != -1 && y != -1 && !model.isTileEmpty(x, y) && model.getColor(x, y) == model.getWhosTurn()) {
-            selectedPiece.setPiece(model.getTile(x, y));
-            view.setIcon(y * 8 + x, null);
-
-            for (int i = 0; i < 64; i++)
-                if (model.hasPieceAccessToTile(selectedPiece.getX(), selectedPiece.getY(), i % 8, i / 8))
-                    view.setBackground(i, getHighlightedTileColor(i));
-        } else
-            selectedPiece.setPiece(null);
-        */
     }
 
     /**
