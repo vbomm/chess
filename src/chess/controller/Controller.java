@@ -94,13 +94,13 @@ public class Controller {
     }
 
     /**
-     * Gets called to select a piece on the given coordinates. If there is none, selectedPiece gets set to null.
+     * Gets called to select a piece on the given index. If there is none, selectedPiece gets set to null.
      *
      * @param index the index of the tile
      */
     public void setSelectedPiece(int index) {
         if (!model.isTileEmpty(index) && model.getColor(index % 8, index / 8) == model.getWhosTurn()) {
-            selectedPiece.setPiece(model.getTile(index % 8, index / 8));
+            selectedPiece.setPiece(model.getTile(index));
             view.setIcon(index, null);
 
             for (int i = 0; i < 64; i++)
@@ -134,7 +134,7 @@ public class Controller {
             if (model.hasPieceAccessToTile(selectedPiece.getX() + selectedPiece.getY() * 8, i))
                 view.setBackground(i, getTileColor(i));
 
-        view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX(), selectedPiece.getY()).getType()));
+        view.setIcon(selectedPiece.getY() * 8 + selectedPiece.getX(), getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX() + selectedPiece.getY() * 8).getType()));
 
         if (model.movePiece(selectedPiece.getX() + selectedPiece.getY() * 8, index)) {
             model.nextHalfStep();
@@ -258,14 +258,12 @@ public class Controller {
      */
     private void setAllIcons() {
         for (int i = 0; i < 64; i++) {
-            int x = i % 8;
-            int y = i / 8;
-            Piece currentPiece = model.getTile(x, y);
+            Piece currentPiece = model.getTile(i);
             ;
             if (currentPiece == null)
                 view.setIcon(i, null);
             else
-                view.setIcon(i, getPieceIcon(model.getColor(x, y), model.getTile(x, y).getType()));
+                view.setIcon(i, getPieceIcon(model.getColor(i % 8, i / 8), model.getTile(i).getType()));
         }
     }
 
@@ -292,7 +290,7 @@ public class Controller {
      * @return the icon for a piece
      */
     public Image getSelectedPieceIcon() {
-        return getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX(), selectedPiece.getY()).getType()).getImage();
+        return getPieceIcon(model.getColor(selectedPiece.getX(), selectedPiece.getY()), model.getTile(selectedPiece.getX() + selectedPiece.getY() * 8).getType()).getImage();
     }
 
     /**
