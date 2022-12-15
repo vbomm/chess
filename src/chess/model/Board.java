@@ -271,8 +271,8 @@ public class Board {
     /**
      * Returns the tile index of a tile name. "A8" would return 0 for example.
      *
-     * @param tileName
-     * @return
+     * @param tileName the name of the tile
+     * @return         the index of the tile
      */
     public int tileNameToIndex(String tileName) {
         return model.tileNameToIndex(tileName);
