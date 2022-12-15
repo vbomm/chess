@@ -127,6 +127,7 @@ public class MoveExecutor {
             board.setTile(move.getDestination(), null);
             move.getPiece().activate();
         }
+
         // undo move, also works to undo promotion as long pawn gets activated and queen deactivated
         board.setTile(move.getStart(), move.getPiece());
         move.getPiece().setTile(move.getStart());
