@@ -257,17 +257,6 @@ private HashMap<ChessColor, Integer> colorHash;
     }
 
     /**
-     * Converts coordinates to an index of a tile.
-     *
-     * @param x the x-coordinate
-     * @param y the y-coordinate
-     * @return  the index
-     */
-    private int coordinatesToIndex(int x, int y) {
-        return x + y * 8;
-    }
-
-    /**
      * Returns true if a tile is empty, false otherwise.
      *
      * @param  index the index of the tile
