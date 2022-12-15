@@ -9,7 +9,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /**
- * The Model.
+ * The Model class. Takes commands from/gives updates to Controller.
  */
 public class Model {
     private int[] column;
