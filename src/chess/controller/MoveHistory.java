@@ -12,7 +12,7 @@ public class MoveHistory {
     /**
      * Sets model and initializes moveHistory.
      *
-     * @param model
+     * @param model the Model object
      */
     public MoveHistory(Model model) {
         this.model = model;
