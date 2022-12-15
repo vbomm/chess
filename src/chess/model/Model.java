@@ -120,16 +120,6 @@ private HashMap<ChessColor, Integer> colorHash;
     }
 
     /**
-     * Returns the row of the given index.
-     *
-     * @param i the index of the tile
-     * @return  the row of the index
-     */
-    public int indexToRow(int i) {
-        return row[i];
-    }
-
-    /**
      * Generates the value of the column for each tile index.
      */
     private void initColumn() {
