@@ -123,8 +123,6 @@ public class MoveExecutor {
         if (board.getTile(move.getDestination()).getType() == PieceType.QUEEN && move.getPiece().getType() == PieceType.PAWN) {
             board.removeLastPiece(move.getPiece().getColor());
 
-            //pieces.get(colorHash.get(move.getPiece().getColor())).remove(pieces.get(colorHash.get(move.getPiece().getColor())).size() - 1);
-
             board.getTile(move.getDestination()).deactivate();
             board.setTile(move.getDestination(), null);
             move.getPiece().activate();
