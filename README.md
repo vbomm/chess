@@ -9,13 +9,13 @@ Since the engine at the moment doesn't use an opening book, the opening moves of
 
 
 Currently implementing special moves/rules, after that it is time to refactor the code.
-- en passant ✔️
-- castling ✔️
-- pawn promotion ✔️ (currently directly promotes to queen)
-- 50-move/75-move rule ✔️ (not activated yet)
-- three-fold repetition ✔️ (not activated yet)
-- only allow player to make moves that don't lead to own king being in check ✔️
-- end game detection and user feedback ❌ (will implement it after code cleanup)
+- [x] en passant
+- [x] castling
+- [x] pawn promotion (currently directly promotes to queen)
+- [x] 50-move/75-move rule (not activated yet)
+- [x] three-fold repetition (not activated yet)
+- [x] only allow player to make moves that don't lead to own king being in check
+- [ ] end game detection and user feedback (will implement it after code cleanup)
 
 
 Possible moves are highlighted when a chess piece is selected (hold mouse button).<br>
@@ -24,28 +24,28 @@ Possible moves are highlighted when a chess piece is selected (hold mouse button
 
 ## Todo
 find and fix bugs<br>
-- short castling sometimes not possible, even if it should, will look at this after first code cleanup
+- [ ] short castling sometimes not possible, even if it should, will look at this after first code cleanup
 
 refactor code<br>
-- extract move generation logic from board class ✔
-- extract lookup table generation from piece classes, so a lookup table is generated only one time for each piece and not every time a piece is created ✔
+- [x] extract move generation logic from board class
+- [ ] extract lookup table generation from piece classes, so a lookup table is generated only one time for each piece and not every time a piece is created ✔
 
 
 improve evaluation of chess positions and quality of produced moves
-- include opening book
-- differentiate between opening, middle and end game
-- lookup table for each chess piece that gives extra points for good positions (currently only pieces themself have a value, the position is not considered) ✔️
+- [ ] include opening book
+- [ ] differentiate between opening, middle and end game
+- [x] lookup table for each chess piece that gives extra points for good positions (currently only pieces themself have a value, the position is not considered)
 
 
 improve speed<br>
-- implement <a href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning">alpha beta pruning</a>
-- implement <a href="https://www.chessprogramming.org/Quiescence_Search">quiescence search</a>
-- store already evaluated positions of a game in a hash table to be able to quickly look them up
-- every time a pawn gets promoted, a new queen object is created. This slows down the move generation. Maybe check for already created and deactivated queen object in piece list?
+- [ ] implement <a href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning">alpha beta pruning</a>
+- [ ] implement <a href="https://www.chessprogramming.org/Quiescence_Search">quiescence search</a>
+- [ ] store already evaluated positions of a game in a hash table to be able to quickly look them up
+- [ ] every time a pawn gets promoted, a new queen object is created. This slows down the move generation. Maybe check for already created and deactivated queen object in piece list?
 
 user interface (low priority, since main interest is developing the chess engine)<br>
-- add error message when images could not be found ✔
-- run engine and interface on different threads ✔
+- [x] add error message when images could not be found
+- [x] run engine and interface on different threads
 
 ### You need at least Java SE 15 to run the jar
 You can get the newest version here: https://www.oracle.com/java/technologies/downloads/
