@@ -10,6 +10,12 @@ In the first version I copied the board and piece objects for each generated mov
 
 Since the engine at the moment doesn't use an opening book, the opening moves of the engine can be confusing.
 
+Possible moves are highlighted when a chess piece is selected (hold mouse button).<br>
+<img src="readme/highlighting.png" alt="chess board">
+
+
+## Todo
+
 ------------------
 
 Currently implementing special moves/rules, after that it is time to refactor the code.
@@ -20,15 +26,6 @@ Currently implementing special moves/rules, after that it is time to refactor th
 - [x] three-fold repetition (not activated yet)
 - [x] only allow player to make moves that don't lead to own king being in check
 - [ ] end game detection and user feedback (will implement it after code cleanup)
-
-
-Possible moves are highlighted when a chess piece is selected (hold mouse button).<br>
-<img src="readme/highlighting.png" alt="chess board">
-
-
-## Todo
-
-------------------
 
 find and fix bugs<br>
 - [ ] short castling sometimes not possible, even if it should, will look at this after first code cleanup
