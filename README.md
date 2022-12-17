@@ -1,12 +1,16 @@
 <img src="readme/board.png" alt="chess board"> pieces drawn in SketchBook
 
 # Chess
+
+------------------
+
 Work in progress chess engine developed in Java. Main focus is the engine itself, so the user interface has a low priority at the moment. The board tiles are stored in a one dimensional array, the pieces are stored in a list (each color has their own), so it is not needed to iterate over the whole board for the move generation.
 
 In the first version I copied the board and piece objects for each generated move, which turned out to be rather slow. In this version there is a method to create a move and a method to take back a move, so the same board and piece list can be used.
 
 Since the engine at the moment doesn't use an opening book, the opening moves of the engine can be confusing.
 
+------------------
 
 Currently implementing special moves/rules, after that it is time to refactor the code.
 - [x] en passant
@@ -23,6 +27,9 @@ Possible moves are highlighted when a chess piece is selected (hold mouse button
 
 
 ## Todo
+
+------------------
+
 find and fix bugs<br>
 - [ ] short castling sometimes not possible, even if it should, will look at this after first code cleanup
 
@@ -48,4 +55,7 @@ user interface (low priority, since main interest is developing the chess engine
 - [x] run engine and interface on different threads
 
 ### You need at least Java SE 15 to run the jar
+
+------------------
+
 You can get the newest version here: https://www.oracle.com/java/technologies/downloads/
