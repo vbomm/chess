@@ -326,8 +326,8 @@ public class MoveGenerator {
                 for (int i = 0; i < board.getPieceList().get(1).size(); i++)
                     board.getPieceList().get(1).get(i).generateThreats(threats);
 
-                if (threats[board.getKing(ChessColor.WHITE).getTile()]) {
-                    movesToRemove.add(m);
+                if (threats[board.getKing(board.getWhosTurn() == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE).getTile()]) {
+                    //movesToRemove.add(m);
 
                     if (cm == 0) movesToRemove.add(m);
                     else capturesToRemove.add(m);
