@@ -45,7 +45,7 @@ private HashMap<ChessColor, Integer> colorHash;
         board = new Board(this, moveHistory);
         moveGenerator = new MoveGenerator(board, moveHistory);
         evaluator = new Evaluator(board);
-        depth = 4;
+        depth = 1;
         engine = new Engine(board, moveGenerator, evaluator, depth);
 
         setupBoard();
@@ -60,6 +60,13 @@ private HashMap<ChessColor, Integer> colorHash;
      * Otherwise the Engine gets called to generate the next move as a CompletableFuture.
      */
     public void nextHalfStep() {
+        moveGenerator.findMovesAndCaptures();
+        moveGenerator.removeInvalidMoves();
+
+        System.out.println(moveGenerator.getLastGeneratedMoves().size() + " " + moveGenerator.getLastGeneratedCaptures().size());
+        if (moveGenerator.getLastGeneratedMoves().size() + moveGenerator.getLastGeneratedCaptures().size() == 0)
+            System.out.println("no moves possible");
+
         if (board.getWhosTurn() == ChessColor.BLACK) {
             CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(engine::move);
 
@@ -73,9 +80,6 @@ private HashMap<ChessColor, Integer> colorHash;
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }
-        } else {
-            moveGenerator.findMovesAndCaptures();
-            moveGenerator.removeInvalidMoves();
         }
     }
 
