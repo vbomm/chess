@@ -32,6 +32,7 @@ public class Engine {
      */
     public void move() {
         moveGenerator.findMovesAndCaptures();
+        moveGenerator.removeInvalidMoves();
         ArrayList<Move> captures = moveGenerator.getLastGeneratedCaptures();
         ArrayList<Move> moves = moveGenerator.getLastGeneratedMoves();
         int bestWhiteScore = Integer.MIN_VALUE;
@@ -92,6 +93,7 @@ public class Engine {
             return evaluator.getScore();
 
         moveGenerator.findMovesAndCaptures();
+        moveGenerator.removeInvalidMoves();
         ArrayList<Move> captures = moveGenerator.getLastGeneratedCaptures();
         ArrayList<Move> moves = moveGenerator.getLastGeneratedMoves();
         int bestScore = board.getWhosTurn() == ChessColor.WHITE ? Integer.MIN_VALUE : Integer.MAX_VALUE;
