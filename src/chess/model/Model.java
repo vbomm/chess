@@ -53,11 +53,8 @@ private HashMap<ChessColor, Integer> colorHash;
     }
 
     /**
-     * Generates next half-step.
-     * If it is the humans turn, it creates the move and capture list so those can be highlighted when a piece is selected
-     * and moves can be validated.
-     * If it is the turn of the human, the moves and captures of this move will get created so they can be used to validate moves.
-     * Otherwise the Engine gets called to generate the next move as a CompletableFuture.
+     * Generates moves and captures, then removes invalid moves. This is used for move highlighting in the UI and end game detection.
+     * If it is not the turn of the human, Engine gets called to generate the next move as a CompletableFuture.
      */
     public void nextHalfStep() {
         moveGenerator.findMovesAndCaptures();
