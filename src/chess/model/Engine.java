@@ -33,15 +33,18 @@ public class Engine {
     public void move() {
         moveGenerator.findMovesAndCaptures();
         moveGenerator.removeInvalidMoves();
+
         ArrayList<Move> captures = moveGenerator.getLastGeneratedCaptures();
         ArrayList<Move> moves = moveGenerator.getLastGeneratedMoves();
+
         int bestWhiteScore = Integer.MIN_VALUE;
         int bestBlackScore = Integer.MAX_VALUE;
         int bestScore = board.getWhosTurn() == ChessColor.WHITE ? bestWhiteScore : bestBlackScore;
         int currentScore;
-        Move bestMove = null;
 
+        Move bestMove = null;
         ArrayList<Move> currentList;
+
         for (int i = 0; i < 2; i++) {
             if (i == 0) currentList = captures;
             else currentList = moves;
@@ -94,12 +97,15 @@ public class Engine {
 
         moveGenerator.findMovesAndCaptures();
         moveGenerator.removeInvalidMoves();
+
         ArrayList<Move> captures = moveGenerator.getLastGeneratedCaptures();
         ArrayList<Move> moves = moveGenerator.getLastGeneratedMoves();
+
         int bestScore = board.getWhosTurn() == ChessColor.WHITE ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int currentscore;
 
         ArrayList<Move> currentList;
+
         for (int i = 0; i < 2; i++) {
             if (i == 0) currentList = captures;
             else currentList = moves;
