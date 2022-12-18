@@ -45,7 +45,7 @@ private HashMap<ChessColor, Integer> colorHash;
         board = new Board(this, moveHistory);
         moveGenerator = new MoveGenerator(board, moveHistory);
         evaluator = new Evaluator(board);
-        depth = 1;
+        depth = 4;
         engine = new Engine(board, moveGenerator, evaluator, depth);
 
         setupBoard();
