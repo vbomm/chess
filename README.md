@@ -1,4 +1,6 @@
-<img src="readme/board.png" alt="chess board"> pieces drawn in SketchBook
+<img src="readme/board.png" alt="chess board">
+<br>
+Pieces drawn in SketchBook
 
 # Chess
 
@@ -12,7 +14,8 @@ Since the engine at the moment doesn't use an opening book, the opening moves of
 
 Possible moves are highlighted when a chess piece is selected (hold mouse button).<br>
 <img src="readme/highlighting.png" alt="chess board">
-
+<br>
+<br>
 
 ## Todo
 
@@ -26,22 +29,28 @@ Currently implementing special moves/rules, after that it is time to refactor th
 - [x] three-fold repetition (not activated yet)
 - [x] only allow player to make moves that don't lead to own king being in check
 - [ ] end game detection and user feedback (will implement it after code cleanup)
+<br>
+<br>
 
 find and fix bugs<br>
 - [ ] short castling sometimes not possible, even if it should, will look at this after first code cleanup
+<br>
+<br>
 
 refactor code<br>
 - [x] extract move generation logic from board class
 - [ ] extract lookup table generation from piece classes, so a lookup table is generated only one time for each piece and not every time a piece is created
-
+<br>
+<br>
 
 improve evaluation of chess positions and quality of produced moves
 - [ ] include opening book
 - [ ] differentiate between opening, middle and end game
 - [x] lookup table for each chess piece that gives extra points for good positions (currently only pieces themself have a value, the position is not considered)
-
-
-improve speed<br>
+<br>
+<br>
+ 
+improve speed
 - [ ] implement <a href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning">alpha beta pruning</a>
 - [ ] implement <a href="https://www.chessprogramming.org/Quiescence_Search">quiescence search</a>
 - [ ] store already evaluated positions of a game in a hash table to be able to quickly look them up
@@ -50,7 +59,8 @@ improve speed<br>
 user interface (low priority, since main interest is developing the chess engine)<br>
 - [x] add error message when images could not be found
 - [x] run engine and interface on different threads
-
+<br>
+<br>
 ### You need at least Java SE 15 to run the jar
 
 ------------------
